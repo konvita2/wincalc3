@@ -13,7 +13,20 @@
 class Conf_glass extends CI_Controller {
 
     public function index(){
-        $this->load->view('conf/glass_index');
+        $this->load->model('Glass_model');
+        $data['glasses'] = $this->Glass_model->get_all();
+        $this->load->view('conf/glass_index',$data);
+    }
+
+    /**
+     * редактирование существующего стеклопакета
+     * @param $id
+     */
+    public function edit($id){
+        $this->load->model('Glass_model');
+        $data['glass'] = $this->Glass_model->get_row_by_id($id);
+        $data['mode'] = 'ed';
+        $this->load->view('conf/glass_edit',$data);
     }
 
 

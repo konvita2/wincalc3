@@ -37,8 +37,72 @@
 
 <div class="container">
 
-    <p>test</p>
     <h3>Список используемых стеклопакетов</h3>
+
+    <button class="btn btn-primary">Добавить стеклопакет</button>
+
+    <table class="table">
+
+        <thead>
+        <tr>
+            <td>Код</td>
+            <td>Наименование</td>
+            <td>Описание</td>
+            <td>Вал</td>
+            <td>Цена за 1 кв.м</td>
+            <td>Действия</td>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <? foreach($glasses as $glass): ?>
+
+            <tr>
+                <td><?=$glass['id']?></td>
+                <td><?=$glass['nam']?></td>
+                <td><?=$glass['description']?></td>
+
+                <td><?=$glass['cur_name']?></td>
+                <td><?=$glass['price']?></td>
+
+                <td>
+                    <a class="btn btn-primary" href="conf_glass/edit/<?=$glass['id']?>">
+                        <span class="glyphicon glyphicon-pencil" href="conf_glass/edit/<?=$glass['id']?>"></span>
+                    </a>
+
+                    <a class="btn btn-primary" type="button" href="conf_glass/del/<?=$glass['id']?>">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </td>
+
+            </tr>
+
+        <? endforeach  ?>
+
+        </tbody>
+
+    </table>
+
+
+    <p>
+
+        <?
+
+            foreach($glasses as $glass){
+                print_r($glass);
+                echo '<br>';
+            }
+
+        ?>
+
+    </p>
+    <?
+
+
+
+
+    ?>
 
 
 

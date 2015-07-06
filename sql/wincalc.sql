@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 06 2015 г., 15:07
+-- Время создания: Июл 06 2015 г., 16:50
 -- Версия сервера: 5.5.35
 -- Версия PHP: 5.4.4-14+deb7u7
 
@@ -60,7 +60,16 @@ CREATE TABLE IF NOT EXISTS `glass` (
   `cur_name` varchar(10) DEFAULT 'UAH',
   `price` decimal(15,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп данных таблицы `glass`
+--
+
+INSERT INTO `glass` (`id`, `nam`, `description`, `cur_name`, `price`) VALUES
+(1, '4/10/4/10/4', '', 'UAH', 60.00),
+(2, '4/16/4', '', 'UAH', 45.00),
+(3, '4/2Ar/4i', '', 'UAH', 75.00);
 
 -- --------------------------------------------------------
 

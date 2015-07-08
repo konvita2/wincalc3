@@ -76,7 +76,7 @@
 
             <div class="form-group">
                 <label for="inputId" class="col-sm-2 control-label">Код</label>
-                <div class="col-sm-10">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" id="inputId" readonly
                            value="<?=$glass['id']?>"/>
                 </div>
@@ -84,8 +84,8 @@
 
             <div class="form-group">
                 <label for="inputNam" class="col-sm-2 control-label">Наименование</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputNam"
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputNam" name="nam"
                         value="<?=$glass['nam']?>"/>
                 </div>
             </div>
@@ -93,16 +93,32 @@
             <div class="form-group">
                 <label for="inputDesc" class="col-sm-2 control-label">Описание</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputDesc"
+                    <input type="text" class="form-control" id="inputDesc" nam="description"
                            value="<?=$glass['description']?>"/>
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="inputCurr" class="col-sm-2 control-label">Валюта</label>
+                <div class="col-sm-2" >
+                    <select class="form-control" name="cur_name">
+                        <?=$currency_list?>
+                    </select>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="inputPrice" class="col-sm-2 control-label">Цена в валюте за кв.м.</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="inputPrice" name="price"
+                           value="<?=$glass['price']?>"/>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Sign in</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button type="button" class="btn btn-primary">Отмена</button>
                 </div>
             </div>
         </form>

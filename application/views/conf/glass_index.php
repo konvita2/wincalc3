@@ -89,10 +89,7 @@
 
         <?
 
-            foreach($glasses as $glass){
-                print_r($glass);
-                echo '<br>';
-            }
+
 
         ?>
 

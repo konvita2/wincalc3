@@ -70,7 +70,7 @@ class Glass_model extends CI_Model {
         return $res;
     }
 
-    function update_by_id($id, $data){
+    function update_by_id($data, $id){
 
     }
 

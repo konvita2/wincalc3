@@ -39,7 +39,7 @@
 
     <h3>Список используемых стеклопакетов</h3>
 
-    <button class="btn btn-primary">Добавить стеклопакет</button>
+    <a class="btn btn-primary" href="conf_glass/add">Добавить стеклопакет</a>
 
     <table class="table">
 

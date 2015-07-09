@@ -72,7 +72,32 @@
 
     <? if($cmdOk && $dataOk): ?>
 
+        <!--
         <form class="form-horizontal">
+        -->
+
+        <?
+            if($mode == 'ed' || $mode == 'dl'){
+                $this->load->helper('form');
+                $ar = array('class' => 'form-horizontal',);
+                $id = $glass['id'];
+                echo form_open("conf_glass/edit/$id",$ar);
+            }
+            elseif($mode == 'nw'){
+                $this->load->helper('form');
+                $ar = array('class' => 'form-horizontal',);
+                $id = 0;
+                $glass = array(
+                    'id' => 0,
+                    'nam' => '',
+                    'description' => '',
+                    'cur_name' => '',
+                    'price' => 0,
+                );
+                echo form_open("conf_glass/new",$ar);
+            }
+
+        ?>
 
             <div class="form-group">
                 <label for="inputId" class="col-sm-2 control-label">Код</label>
@@ -93,7 +118,7 @@
             <div class="form-group">
                 <label for="inputDesc" class="col-sm-2 control-label">Описание</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputDesc" nam="description"
+                    <input type="text" class="form-control" id="inputDesc" name="description"
                            value="<?=$glass['description']?>"/>
                 </div>
             </div>
@@ -117,8 +142,8 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <button type="button" class="btn btn-primary">Отмена</button>
+                    <button type="submit" class="btn btn-primary" name="btnSave">Сохранить</button>
+                    <button type="button" class="btn btn-primary" name="btnCancel">Отмена</button>
                 </div>
             </div>
         </form>

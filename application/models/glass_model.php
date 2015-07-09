@@ -71,11 +71,19 @@ class Glass_model extends CI_Model {
     }
 
     function update_by_id($data, $id){
-
+        $this->db->update('glass',$data,array('id' => $id));
     }
 
     function delete_by_id($id){
 
+    }
+
+    /**
+     *
+     * @param $data
+     */
+    function add($data){
+        $this->db->insert($data);
     }
 
 } 

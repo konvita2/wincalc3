@@ -19,6 +19,38 @@ class Conf_glass extends CI_Controller {
     }
 
     /**
+     * delete glass
+     * @param $id
+     */
+    public function del($id){
+        $this->load->model('Glass_model');
+        $ar = $this->Glass_model->get_row_by_id($id);
+        $cur_name = $ar['cur_name'];
+        $data['glass'] = $ar;
+        $data['mode'] = 'dl';
+
+        //currency list
+        $this->load->model('Currency_model');
+        $data['currency_list'] = $this->Currency_model->get_html_rows($cur_name);
+
+        if(isset($_POST['btnSave'])){
+            // prepare info
+            $data['textinfo'] = 'Удален стеклопакет ' . $this->input->post('nam') . ' ' .
+                $this->input->post('description') . '.';
+
+            // delete
+            $this->Glass_model->delete_by_id($id);
+
+            $this->load->view('conf/glass_success', $data);
+
+        }
+        else
+        {
+            $this->load->view('conf/glass_edit', $data);
+        }
+    }
+
+    /**
      * редактирование существующего стеклопакета
      * @param $id
      */
@@ -86,11 +118,6 @@ class Conf_glass extends CI_Controller {
                 $this->input->post('price') . ' ' . $this->input->post('cur_name');
             $this->load->view('conf/glass_success',$data);
         }
-
-
-
-
-
     }
 
 

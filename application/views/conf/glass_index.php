@@ -1,45 +1,20 @@
 <html lang="ru">
 
-<head>
-    <title>WinCalc3 - оконный калькулятор</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <script src="/js/jquery-2.1.4"></script>
-    <script src="/js/bootstrap.js"></script>
+<?
+    $this->load->helper('url');
+?>
 
-
-</head>
+<? $this->load->view('main_head'); ?>
 
 <body>
 
-<nav class="navbar navbar-fixed-top">
-    <div class="container-fluid navplus">
-        <a class="navbar-brand img_logo" href="#">
-            <img src="/img/logo_red.png" height="20px"/>
-        </a>
-        <ul class="nav navbar-nav">
-            <li><a href="#about">arka.ua</a></li>
-            <li><a href="#contact">О программе</a></li>
-        </ul>
-
-        <form action="login_process.php" class="navbar-form navbar-right" method="post">
-            <div class="form-group">
-                <input name="login" type="text" placeholder="Логин" value="" class="form-control"/>
-                <input name="password" type="password" placeholder="Пароль" value="" class="form-control"/>
-                <button type="submit" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-log-in"></i> Вход
-                </button>
-            </div>
-        </form>
-    </div>
-</nav>
+<? $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
     <h3>Список используемых стеклопакетов</h3>
 
-    <a class="btn btn-primary" href="conf_glass/add">Добавить стеклопакет</a>
+    <a class="btn btn-primary" href="<?=base_url('index.php/conf_glass/add')?>">Добавить стеклопакет</a>
 
     <table class="table">
 
@@ -67,11 +42,13 @@
                 <td><?=$glass['price']?></td>
 
                 <td>
-                    <a class="btn btn-primary" href="conf_glass/edit/<?=$glass['id']?>">
-                        <span class="glyphicon glyphicon-pencil" href="conf_glass/edit/<?=$glass['id']?>"></span>
+                    <? $href = base_url('index.php/conf_glass/edit/' . $glass['id']); ?>
+                    <a class="btn btn-primary" href="<?=$href?>">
+                        <span class="glyphicon glyphicon-pencil"></span>
                     </a>
 
-                    <a class="btn btn-primary" type="button" href="conf_glass/del/<?=$glass['id']?>">
+                    <? $href = base_url('index.php/conf_glass/del/' . $glass['id']); ?>
+                    <a class="btn btn-primary" type="button" href="<?=$href?>">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
                 </td>
@@ -83,25 +60,6 @@
         </tbody>
 
     </table>
-
-
-    <p>
-
-        <?
-
-
-
-        ?>
-
-    </p>
-    <?
-
-
-
-
-    ?>
-
-
 
 </div>
 </body>

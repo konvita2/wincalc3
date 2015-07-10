@@ -75,7 +75,7 @@ class Glass_model extends CI_Model {
     }
 
     function delete_by_id($id){
-
+        $this->db->delete('glass', array('id' => $id));
     }
 
     /**
@@ -83,7 +83,7 @@ class Glass_model extends CI_Model {
      * @param $data
      */
     function add($data){
-        $this->db->insert($data);
+        $this->db->insert('glass',$data);
     }
 
 } 

@@ -1,39 +1,10 @@
 <html lang="ru">
 
-<head>
-    <title>WinCalc3 - оконный калькулятор</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <script src="/js/jquery-2.1.4"></script>
-    <script src="/js/bootstrap.js"></script>
-
-
-</head>
+<? $this->load->view('main_head'); ?>
 
 <body>
 
-<nav class="navbar navbar-fixed-top">
-    <div class="container-fluid navplus">
-        <a class="navbar-brand img_logo" href="#">
-            <img src="/img/logo_red.png" height="20px"/>
-        </a>
-        <ul class="nav navbar-nav">
-            <li><a href="#about">arka.ua</a></li>
-            <li><a href="#contact">О программе</a></li>
-        </ul>
-
-        <form action="login_process.php" class="navbar-form navbar-right" method="post">
-            <div class="form-group">
-                <input name="login" type="text" placeholder="Логин" value="" class="form-control"/>
-                <input name="password" type="password" placeholder="Пароль" value="" class="form-control"/>
-                <button type="submit" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-log-in"></i> Вход
-                </button>
-            </div>
-        </form>
-    </div>
-</nav>
+<? $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -44,11 +15,17 @@
         <? elseif($mode == 'dl'): ?>
             удаление
         <? elseif($mode == 'nw'): ?>
-            добавление
+            добавление нового
         <? else: ?>
             неизвестная команда
         <? endif ?>
     </h3>
+
+    <? if($mode == 'dl'): ?>
+        <div class="alert alert-danger">
+            Вы уверены в том что хотите удалить выбранный стеклопакет?
+        </div>
+    <? endif ?>
 
     <?
 
@@ -81,7 +58,10 @@
                 $this->load->helper('form');
                 $ar = array('class' => 'form-horizontal',);
                 $id = $glass['id'];
-                echo form_open("conf_glass/edit/$id",$ar);
+                if($mode == 'ed')
+                    echo form_open("conf_glass/edit/$id",$ar);
+                else
+                    echo form_open("conf_glass/del/$id",$ar);
             }
             elseif($mode == 'nw'){
                 $this->load->helper('form');
@@ -94,8 +74,19 @@
                     'cur_name' => '',
                     'price' => 0,
                 );
-                echo form_open("conf_glass/new",$ar);
+                echo form_open("conf_glass/add",$ar);
             }
+
+        ?>
+
+        <?
+
+        if($mode == 'dl'){
+            $dlmark = 'readonly';
+        }
+        else{
+            $dlmark = '';
+        }
 
         ?>
 
@@ -110,7 +101,7 @@
             <div class="form-group">
                 <label for="inputNam" class="col-sm-2 control-label">Наименование</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="inputNam" name="nam"
+                    <input type="text" class="form-control" id="inputNam" name="nam" <?=$dlmark?>
                         value="<?=$glass['nam']?>"/>
                 </div>
             </div>
@@ -118,7 +109,7 @@
             <div class="form-group">
                 <label for="inputDesc" class="col-sm-2 control-label">Описание</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputDesc" name="description"
+                    <input type="text" class="form-control" id="inputDesc" name="description" <?=$dlmark?>
                            value="<?=$glass['description']?>"/>
                 </div>
             </div>
@@ -126,7 +117,7 @@
             <div class="form-group">
                 <label for="inputCurr" class="col-sm-2 control-label">Валюта</label>
                 <div class="col-sm-2" >
-                    <select class="form-control" name="cur_name">
+                    <select class="form-control" name="cur_name" <?=$dlmark?>  >
                         <?=$currency_list?>
                     </select>
                 </div>
@@ -135,15 +126,19 @@
             <div class="form-group">
                 <label for="inputPrice" class="col-sm-2 control-label">Цена в валюте за кв.м.</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" id="inputPrice" name="price"
+                    <input type="text" class="form-control" id="inputPrice" name="price" <?=$dlmark?>
                            value="<?=$glass['price']?>"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary" name="btnSave">Сохранить</button>
-                    <button type="button" class="btn btn-primary" name="btnCancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary" name="btnSave">
+                        <? echo $mode == 'dl' ? 'Удалить' : 'Сохранить' ?>
+                    </button>
+                    <a type="button" class="btn btn-primary"
+                       href="index"
+                       name="btnCancel">Отмена</a>
                 </div>
             </div>
         </form>

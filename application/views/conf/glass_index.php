@@ -12,7 +12,7 @@
 
 <div class="container">
 
-    <h3>Список используемых стеклопакетов</h3>
+    <h3>Справочник стеклопакетов</h3>
 
     <a class="btn btn-primary" href="<?=base_url('index.php/conf_glass/add')?>">Добавить стеклопакет</a>
 

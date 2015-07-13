@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 08 2015 г., 18:46
+-- Время создания: Июл 13 2015 г., 23:42
 -- Версия сервера: 5.5.35
 -- Версия PHP: 5.4.4-14+deb7u7
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `currency` (
   `nam` varchar(10) NOT NULL,
   `mult` double DEFAULT '100',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `currency`
@@ -41,7 +41,8 @@ INSERT INTO `currency` (`id`, `nam`, `mult`) VALUES
 (1, 'EUR1', 100),
 (2, 'EUR2', 100),
 (3, 'USD', 100),
-(4, 'UAH', 1);
+(4, 'UAH', 1),
+(5, 'RUR', 10);
 
 -- --------------------------------------------------------
 
@@ -70,16 +71,17 @@ CREATE TABLE IF NOT EXISTS `glass` (
   `cur_name` varchar(10) DEFAULT 'UAH',
   `price` decimal(15,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `glass`
 --
 
 INSERT INTO `glass` (`id`, `nam`, `description`, `cur_name`, `price`) VALUES
-(1, '4/10/4/10/4', '', 'UAH', 60.00),
-(2, '4/16/4', '', 'USD', 45.00),
-(3, '4/2Ar/4i', '', 'UAH', 75.00);
+(1, '4/10/4/10/4', '', 'UAH', 56.00),
+(2, '4/16/4', '', 'UAH', 61.30),
+(3, '4/2Ar/4i', '', 'UAH', 75.00),
+(4, '4/8/4', '', 'UAH', 50.00);
 
 -- --------------------------------------------------------
 

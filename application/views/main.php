@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 
+<?
+
+/**
+ *
+ */
+
+?>
+
 <head>
     <title>WinCalc3 - оконный калькулятор</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">

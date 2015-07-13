@@ -18,7 +18,7 @@ class Currency_model extends CI_Model {
     // - получить что-то готовое для select
 
     /**
-     * получить множитель по num
+     * получить множитель по nam
      * @param $pnam
      * @return int
      */
@@ -95,6 +95,39 @@ class Currency_model extends CI_Model {
         return $res;
     }
 
+    /**
+     * Получить запись по id
+     * @param $id
+     * @return array
+     */
+    function get_row_by_id($id){
+        $res = array();
+
+        $qres = $this->db->get_where('currency', array('id' => $id), 1);
+        foreach ($qres->result_array() as $qrow) {
+            $res = $qrow;
+            break;
+        }
+
+        return $res;
+    }
+
+    /**
+     * получить запись по наименованию валюты
+     * @param $nam
+     * @return array
+     */
+    function get_row_by_nam($nam){
+        $res = array();
+
+        $qres = $this->db->get_where('currency', array('nam' => trim($nam)), 1);
+        foreach ($qres->result_array() as $qrow) {
+            $res = $qrow;
+            break;
+        }
+
+        return $res;
+    }
 
 }
 

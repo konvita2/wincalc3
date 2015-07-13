@@ -1,3 +1,5 @@
+<? $this->load->view('main_topmost'); ?>
+
 <html lang="ru">
 
 <? $this->load->view('main_head'); ?>

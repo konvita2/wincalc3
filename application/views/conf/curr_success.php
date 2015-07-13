@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" href="<?=base_url().'index.php/conf_glass'?>">К списку стеклопакетов</a>
+    <a class="btn btn-primary" href="<?=base_url().'index.php/conf_curr'?>">К списку валют</a>
 
 
 </div>

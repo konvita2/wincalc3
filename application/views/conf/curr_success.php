@@ -7,7 +7,7 @@
 
 <body>
 
-<? $this->load->view('main_head'); ?>
+<? $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -20,7 +20,14 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" href="<?=base_url().'index.php/conf_curr'?>">К списку валют</a>
+    <?
+
+    $ar = array(
+        'class' => 'btn btn-primary',
+    );
+    echo anchor('conf_curr','К списку валют',$ar);
+
+    ?>
 
 
 </div>

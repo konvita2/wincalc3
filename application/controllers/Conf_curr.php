@@ -14,21 +14,38 @@ class Conf_curr extends CI_Controller {
         $this->load->view('conf/curr_index', $data);
     }
 
-    public function del(){
+    public function del($id){
+        $this->load->model('Currency_model');
+        $data['row'] = $this->Currency_model->get_row_by_id($id);
+        $data['mode'] = 'dl';
 
+        if(isset($_POST['btn_save'])){
+            //delete
+            // prepare info
+            $data['textinfo'] = 'Удалена валюта ' . $this->input->post('nam') . '.';
+
+            // delete
+            $this->Currency_model->delete_by_id($id);
+            $this->load->view('conf/curr_success', $data);
+        }
+        else{
+            //show
+            $this->load->view("conf/curr_edit", $data);
+        }
     }
 
-    /**
-     * edit currency by $id
-     * @param $id
-     */
     public function edit($id){
-
+        $this->load->library('form_validation');
         $this->load->model('Currency_model');
         $data['row'] = $this->Currency_model->get_row_by_id($id);
         $data['mode'] = 'ed';
 
-        if(isset($_POST['btn_save'])){
+        //set rules
+        $this->form_validation->set_rules('nam', 'Наименование валюты',
+            'trim|required|min_length[3]|max_length[8]|callback_test_currency');
+        $this->form_validation->set_rules('mult', 'Множитель', 'required');
+
+        if($this->form_validation->run() == TRUE){
             //save
             $newdata = array(
                 'nam' => $this->input->post('nam'),
@@ -43,8 +60,6 @@ class Conf_curr extends CI_Controller {
             //edit
             $this->load->view('conf/curr_edit', $data);
         }
-
-
     }
 
     /**
@@ -77,5 +92,24 @@ class Conf_curr extends CI_Controller {
         }
 
     }
+
+    /**
+     * проверить (валидация) уникальность имени
+     * @param $nam
+     * @return bool
+     */
+    public function test_currency($nam){
+        $this->load->model('Currency_model','model');
+        $qres = $this->model->get_row_by_nam($nam);
+        if(empty($qres)){
+            return TRUE;
+        }
+        else{
+            $this->form_validation->set_message('test_currency', "%s $nam уже присутсвует в справочнике");
+            return FALSE;
+        }
+    }
+
+
 
 } 

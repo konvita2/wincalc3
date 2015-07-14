@@ -54,7 +54,7 @@ class Currency_model extends CI_Model {
      * delete row by id
      * @param $id
      */
-    function delete($id){
+    function delete_by_id($id){
         $this->db->delete('currency', array('id' => $id));
     }
 

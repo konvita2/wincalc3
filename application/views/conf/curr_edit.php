@@ -1,4 +1,10 @@
-<? $this->load->helper('form'); ?>
+<?
+    // libraries
+    $this->load->helper('form');
+    $this->load->helper('url');
+?>
+
+
 <? $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
@@ -33,8 +39,26 @@
         <? endif ?>
     </h3>
 
+    <? if($mode == 'dl'): ?>
+        <div class="alert alert-danger">
+            Вы уверены в том, что хотите удалить выбранную валюту?
+        </div>
+    <? endif ?>
+
+    <?
+    // readonly attribute for input
+    if($mode == 'dl') $dlmark = 'readonly';
+    else $dlmark = '';
+    ?>
+
     <? $ar = array('class' => 'form-horizontal',); ?>
-    <? echo validation_errors(); ?>
+
+    <?
+    // validation errors
+    $estr = validation_errors();
+    $evisi = !empty($estr) ? '' : 'style="display: none"';
+    ?>
+    <div class="alert alert-danger" role="alert" <?=$evisi?>><? echo $estr; ?></div>
 
     <!-- form -->
 
@@ -44,9 +68,11 @@
     $nam = $row['nam'];
     $mult = $row['mult'];
 
-    if(($mode == 'ed') || ($mode == 'dl')){
-        // ed/dl @todo make branch
+    if($mode == 'ed'){
         echo form_open("conf_curr/edit/$id", $ar);
+    }
+    elseif($mode == 'dl'){
+        echo form_open("conf_curr/del/$id", $ar);
     }
     else{
         // @todo add branch
@@ -65,14 +91,16 @@
         <div class="form-group">
             <label for="input_nam" class="control-label col-sm-2">Наименование</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="input_nam" name="nam" value="<?=$nam?>"/>
+                <input type="text" class="form-control" id="input_nam" name="nam" <?=$dlmark?>
+                       value="<? echo $nam; ?>"/>
             </div>
         </div>
 
         <div class="form-group">
             <label for="input_mult" class="control-label col-sm-2">Множитель для курса</label>
             <div class="col-sm-2">
-                <input type="number" class="form-control" id="input_mult" name="mult" value="<?=$mult?>"/>
+                <input type="number" class="form-control" id="input_mult" name="mult" <?=$dlmark?>
+                       value="<? echo $mult; ?>"/>
             </div>
         </div>
 
@@ -81,9 +109,16 @@
                 <button type="submit" class="btn btn-primary" name="btn_save">
                     <? echo $mode == 'dl' ? 'Удалить' : 'Сохранить' ?>
                 </button>
-                <a type="button" class="btn btn-primary"
-                   href="index"  <? // @todo change href  ?>
-                   name="btnCancel">Отмена</a>
+
+                <?
+                $ar = array(
+                    'type' => 'button',
+                    'class' => 'btn btn-primary',
+                    'name' => 'btn_cancel',
+                );
+                echo anchor('conf_curr', 'Отмена', $ar);
+                ?>
+
             </div>
         </div>
 

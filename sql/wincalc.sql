@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 13 2015 г., 23:42
+-- Время создания: Июл 22 2015 г., 01:25
 -- Версия сервера: 5.5.35
 -- Версия PHP: 5.4.4-14+deb7u7
 
@@ -38,11 +38,10 @@ CREATE TABLE IF NOT EXISTS `currency` (
 --
 
 INSERT INTO `currency` (`id`, `nam`, `mult`) VALUES
-(1, 'EUR1', 100),
-(2, 'EUR2', 100),
+(2, 'EUR', 100),
 (3, 'USD', 100),
 (4, 'UAH', 1),
-(5, 'RUR', 10);
+(5, 'EUR0', 100);
 
 -- --------------------------------------------------------
 
@@ -56,7 +55,15 @@ CREATE TABLE IF NOT EXISTS `curs` (
   `cur_nam` varchar(10) NOT NULL,
   `price` double DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `curs`
+--
+
+INSERT INTO `curs` (`id`, `dat`, `cur_nam`, `price`) VALUES
+(1, '2015-07-12', 'EUR', 2520),
+(2, '2015-07-05', 'EUR0', 2600);
 
 -- --------------------------------------------------------
 
@@ -71,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `glass` (
   `cur_name` varchar(10) DEFAULT 'UAH',
   `price` decimal(15,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Дамп данных таблицы `glass`

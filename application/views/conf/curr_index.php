@@ -42,6 +42,7 @@
                 <td>Код</td>
                 <td>Наименование</td>
                 <td>Множитель</td>
+                <td>Курс на <?=$today?></td>
                 <td>Действия</td>
             </tr>
             </thead>
@@ -55,16 +56,24 @@
                     <td><?=$curr['nam']?></td>
                     <td><?=$curr['mult']?></td>
 
+                    <td><? printf("%.2f",$curr['rate']); ?></td>
+
                     <td>
                         <? $href = base_url('index.php/conf_curr/edit/' . $curr['id']); ?>
-                        <a class="btn btn-primary" href="<?=$href?>">
+                        <a class="btn btn-primary" href="<?=$href?>" title="Редактировать">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
 
                         <? $href = base_url('index.php/conf_curr/del/' . $curr['id']); ?>
-                        <a class="btn btn-primary" type="button" href="<?=$href?>">
+                        <a class="btn btn-danger" type="button" href="<?=$href?>" title="Удалить">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
+
+                        <? $href = base_url('index.php/conf_rate/index/' . $curr['id']); ?>
+                        <a class="btn btn-default" type="button" href="<?=$href?>" title="Таблица изменения курса">
+                            <span class="glyphicon glyphicon-usd"></span>
+                        </a>
+
                     </td>
 
                 </tr>

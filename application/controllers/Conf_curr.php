@@ -10,7 +10,9 @@ class Conf_curr extends CI_Controller {
 
     public function index(){
         $this->load->model('Currency_model');
-        $data['currs'] = $this->Currency_model->get_rows();
+        $today = date('d-m-Y');
+        $data['currs'] = $this->Currency_model->get_rows_with_rate($today);
+        $data['today'] = date('d-m-Y');
         $this->load->view('conf/curr_index', $data);
     }
 

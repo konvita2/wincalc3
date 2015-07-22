@@ -74,6 +74,19 @@ class Currency_model extends CI_Model {
     }
 
     /**
+     * получить курс валюты также в массиве
+     * @param $day - the day on which rate is
+     */
+    function get_rows_with_rate($day){
+        $this->load->model('Rate_model','Rate');
+        $res = $this->get_rows();
+        foreach($res as &$row){
+            $row['rate'] = $this->Rate->get_rate_by_curr_dat($row['nam'], $day);
+        }
+        return $res;
+    }
+
+    /**
      * возвращает список для выбора в виде
      * <option value='uah'>uah</uah>
      * <option value='usd'>usd</usd>
@@ -123,6 +136,38 @@ class Currency_model extends CI_Model {
         $qres = $this->db->get_where('currency', array('nam' => trim($nam)), 1);
         foreach ($qres->result_array() as $qrow) {
             $res = $qrow;
+            break;
+        }
+
+        return $res;
+    }
+
+    /**
+     * Получить наименование валюты по id
+     * @param $id
+     * @return string
+     */
+    function get_nam_by_id($id){
+        $res = '';
+
+        $ar = $this->get_row_by_id($id);
+        if(!empty($ar)){
+            $res = trim($ar['nam']);
+        }
+
+        return $res;
+    }
+
+    /**
+     * Получить id валюты по ее наименованию
+     * */
+    function get_id_by_nam($nam){
+        $res = 0;
+
+        $this->db->where('nam', trim($nam));
+        $query = $this->db->get('currency', 1);
+        foreach($query->result() as $row){
+            $res = $row->id;
             break;
         }
 

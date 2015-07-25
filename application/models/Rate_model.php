@@ -65,11 +65,15 @@ class Rate_model extends CI_Model {
 	}
 
 	/**
-	* установить указанный курс по указанной валюте на указанную дату
+	* установить указанный курс по ИД указанной валюты на указанную дату
 	*/
-	function add_rate($currency_nam, $dat, $new_price){
+	function add_rate($currency_id, $dat, $new_price){
 
-		$ar = array(
+        //get cur_id
+        $this->load->model('Currency_model');
+        $currency_nam = $this->Currency_model->get_nam_by_id($currency_id);
+
+        $ar = array(
 				'cur_nam'=>$currency_nam,
 				'dat'=>$dat,
 				'price'=>$new_price, 
@@ -167,6 +171,14 @@ class Rate_model extends CI_Model {
         }
 
         return $res;
+    }
+
+    /**
+     * delete row by id
+     * @param $id
+     */
+    function delete_by_id($id){
+        $this->db->delete('curs', array('id' => $id));
     }
 
 }

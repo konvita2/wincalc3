@@ -54,7 +54,7 @@
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
 
-                        <? $href = base_url("index.php/conf_curr/del/$rate_id"); ?>
+                        <? $href = base_url("index.php/conf_rate/del/$rate_id"); ?>
                         <a class="btn btn-danger" type="button" href="<?=$href?>" title="Удалить">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>

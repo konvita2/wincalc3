@@ -52,8 +52,9 @@ $this->load->helper('url');
     <?
     // readonly attribute for input
     $dlmark = '';
+    $edmark = '';
     if($mode == 'dl') $dlmark = 'readonly';
-    if($mode == 'ed') $dlmark = 'readonly';
+    if($mode == 'ed') $edmark = 'readonly';
     ?>
 
     <?
@@ -61,21 +62,21 @@ $this->load->helper('url');
     $auxar = array('class' => 'form-horizontal',);
     // open form in proper way
     if($mode == 'ed')       echo form_open("conf_rate/edit/$rate_id", $auxar);
-    //elseif($mode == 'nw')
-    //elseif($mode == 'dl')
+    if($mode == 'nw')       echo form_open("conf_rate/add/$cur_id", $auxar);
+    if($mode == 'dl')       echo form_open("conf_rate/del/$rate_id", $auxar);
     ?>
 
         <div class="form-group">
             <label for="input_dat" class="control-label col-sm-2">Дата</label>
             <div class="col-sm-2">
-                <input type="date" class="form-control" id="input_dat" <?=$dlmark?> name="dat" value="<?=$dat?>"/>
+                <input type="date" class="form-control" id="input_dat" <?=$edmark?> <?=$dlmark?> name="dat" value="<?=$dat?>"/>
             </div>
         </div>
 
         <div class="form-group">
             <label for="input_price" class="control-label col-sm-2">Стоимость за <?=$mult?></label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="input_price" name="price" value="<?=$price?>"/>
+                <input type="text" class="form-control" id="input_price" <?=$dlmark?> name="price" value="<?=$price?>"/>
             </div>
         </div>
 

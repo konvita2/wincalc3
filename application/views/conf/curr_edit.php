@@ -9,7 +9,10 @@
 
 <html lang="ru">
 
-<? $this->load->view('main_head'); ?>
+<?
+    $dt['tit'] = 'Валюта редактор';
+    $this->load->view('main_head', $dt);
+?>
 
 <body>
 
@@ -27,13 +30,13 @@
 <div class="container">
 
     <h3>
-        Стеклопакеты:
+        Валюта:
         <? if($mode == 'ed'): ?>
             редактирование
         <? elseif($mode == 'dl'): ?>
             удаление
         <? elseif($mode == 'nw'): ?>
-            добавление нового
+            добавление новой
         <? else: ?>
             неизвестная команда
         <? endif ?>

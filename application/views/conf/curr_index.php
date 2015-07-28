@@ -23,7 +23,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<? $this->load->view('main_head'); ?>
+<?
+    $dt['tit'] = 'Справочник валют';
+    $this->load->view('main_head', $dt);
+?>
 
 <body>
 

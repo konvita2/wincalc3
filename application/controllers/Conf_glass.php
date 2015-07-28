@@ -6,6 +6,8 @@
  * Time: 13:30
  */
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * контроллер для доступа к таблице стеклопакетов
  * Class Conf_glass

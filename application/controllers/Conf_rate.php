@@ -6,6 +6,8 @@
  * Time: 0:11
  */
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Conf_rate extends CI_Controller {
 
     /**
@@ -145,8 +147,6 @@ class Conf_rate extends CI_Controller {
             $this->Rate_model->add_rate($cur_id, $dat, $price);
 
             //OK form message
-
-
             $data['textinfo'] = "Добавлен курс $price за $mult единиц для валюты $cur_nam на $dat";
             $this->load->view('conf/rate_success', $data);
         }

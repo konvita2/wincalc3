@@ -6,7 +6,20 @@
  * Time: 11:22
  */
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Conf_curr extends CI_Controller {
+
+
+    function __construct(){
+        parent::__construct();
+
+        // test login
+        if(!$this->ion_auth->logged_in()){
+            redirect('login', 'refresh');
+        }
+
+    }
 
     public function index(){
         $this->load->model('Currency_model');

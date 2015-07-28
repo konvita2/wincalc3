@@ -3,7 +3,9 @@
 
 <? $this->load->helper('url'); ?>
 
-<? $this->load->view('main_head'); ?>
+<?
+    $this->load->view('main_head', array('tit' => 'Справочник валют OK!'));
+?>
 
 <body>
 

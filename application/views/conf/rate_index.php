@@ -6,7 +6,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<? $this->load->view('main_head'); ?>
+<?
+    $dt['tit'] = 'Таблица курсов валюты';
+    $this->load->view('main_head', $dt);
+?>
 
 <body>
 

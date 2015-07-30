@@ -13,11 +13,30 @@ class Conf_curr extends CI_Controller {
 
     function __construct(){
         parent::__construct();
+    }
 
-        // test login
+    /**
+     * перекрыть поведение в зависимости от авторизации
+     */
+    public function _remap($method, $params = array()){
         if(!$this->ion_auth->logged_in()){
-            redirect('login', 'refresh');
+            redirect('admin/required', 'refresh');
         }
+        else{
+            if($method == 'index'){
+                $this->index();
+            }
+            elseif($method == 'del'){
+                $this->del($params[0]);
+            }
+            elseif($method == 'edit'){
+                $this->edit($params[0]);
+            }
+            elseif($method == 'add'){
+                $this->add();
+            }
+        }
+
 
     }
 

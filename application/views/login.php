@@ -16,7 +16,10 @@ $this->load->view('main_head', $data);
 
     <div class="container">
 
-
+        <div class="jumbotron">
+            <h2>Административный раздел</h2>
+            <p>Для входа на данную страницу необходимо выполнить авторизацию</p>
+        </div>
 
     </div>
 

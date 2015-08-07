@@ -21,6 +21,31 @@ class Conf_glass extends CI_Controller {
     }
 
     /**
+     * требовать авторизации
+     * @param $method
+     * @param array $params
+     */
+    public function _remap($method, $params = array()){
+        if(!$this->ion_auth->logged_in()){
+            redirect('admin/required', 'refresh');
+        }
+        else{
+            if($method == 'index'){
+                $this->index();
+            }
+            elseif($method == 'del'){
+                $this->del($params[0]);
+            }
+            elseif($method == 'edit'){
+                $this->edit($params[0]);
+            }
+            elseif($method == 'add'){
+                $this->add();
+            }
+        }
+    }
+
+    /**
      * delete glass
      * @param $id
      */

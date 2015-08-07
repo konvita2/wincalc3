@@ -46,9 +46,9 @@ class Admin extends CI_Controller {
         }
         else{
             // error login page
-
+            $data['login_error'] = 2;
+            $this->load->view('admin_required', $data);
         }
-
     }
 
     /**
@@ -57,7 +57,10 @@ class Admin extends CI_Controller {
     function logout(){
         if($this->ion_auth->logged_in()){
             $this->ion_auth->logout();
-            $this->load->view('welcome_message');  // @todo поменять на что-то - главная страница?
+            redirect('main/index', 'refresh');
+        }
+        else{
+            redirect('main/index', 'refresh');
         }
     }
 

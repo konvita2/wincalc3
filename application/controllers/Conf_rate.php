@@ -12,7 +12,7 @@ class Conf_rate extends CI_Controller {
 
     /**
      * выводит таблицу изменения курсов валют по id валюты
-     * @param $id
+     * @param $id - currency id
      */
     function index($id){
         $this->load->model('Rate_model');
@@ -27,6 +27,37 @@ class Conf_rate extends CI_Controller {
         $data['mult'] = $this->Currency_model->get_mult_by_nam($nam);
 
         $this->load->view('conf/rate_index', $data);
+    }
+
+    /**
+     * protect controller from unauthorized users
+     * @param $method
+     * @param array $params
+     */
+    public function _remap($method, $params = array())
+    {
+        if(!$this->ion_auth->logged_in())
+        {
+            redirect('admin/required', 'refresh');
+        }
+        else
+        {
+            if($method == 'index'){
+                $this->index($params[0]);
+            }
+            elseif($method == 'edit'){
+                $this->edit($params[0]);
+            }
+            elseif($method == 'del'){
+                $this->del($params[0]);
+            }
+            elseif($method == 'add'){
+                $this->add($params[0]);
+            }
+            else{
+                // @todo show page_404 find out how to do it
+            }
+        }
     }
 
     /**

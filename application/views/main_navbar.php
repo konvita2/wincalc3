@@ -13,7 +13,7 @@
             <?
 
             if($this->ion_auth->logged_in() && $this->ion_auth->is_admin()){
-                echo "<li>" . anchor('admin/index','Настройки') . "</li>";
+                echo "<li>" . anchor('admin/index','Административный раздел') . "</li>";
             }
 
             ?>

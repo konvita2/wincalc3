@@ -4,12 +4,14 @@ $this->load->helper('form');
 $this->load->helper('url');
 ?>
 
-
 <? $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<? $this->load->view('main_head'); ?>
+<?
+    $data['tit'] = 'Курс валюты';
+    $this->load->view('main_head', $data['tit']);
+?>
 
 <body>
 

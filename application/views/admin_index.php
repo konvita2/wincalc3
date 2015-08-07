@@ -13,7 +13,7 @@
 <html lang="en">
 
 <?
-$data['tit'] = 'Настройки';
+$data['tit'] = 'Административный раздел';
 $this->load->view('main_head', $data);
 ?>
 
@@ -23,11 +23,12 @@ $this->load->view('main_head', $data);
 
 <div class="container">
 
-    <h2>Настройки</h2>
+    <h2>Административный раздел</h2>
 
     <h3>Справочники</h3>
 
     <? echo anchor('conf_curr', 'Валюта', array('class' => 'btn btn-default')); ?>
+    <? echo anchor('conf_glass', 'Стеклопакеты', array('class' => 'btn btn-default')); ?>
 
 </div>
 

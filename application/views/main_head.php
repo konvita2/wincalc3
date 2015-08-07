@@ -11,7 +11,10 @@
     if(!isset($tit)){
         echo "<title>WinCalc3 - оконный калькулятор</title>";
     }
+    else{
         echo '<title>' . $tit . '</title>';
+    }
+
     ?>
 
 </head>

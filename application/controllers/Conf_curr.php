@@ -36,8 +36,6 @@ class Conf_curr extends CI_Controller {
                 $this->add();
             }
         }
-
-
     }
 
     public function index(){

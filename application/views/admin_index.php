@@ -29,6 +29,7 @@ $this->load->view('main_head', $data);
 
     <? echo anchor('conf_curr', 'Валюта', array('class' => 'btn btn-default')); ?>
     <? echo anchor('conf_glass', 'Стеклопакеты', array('class' => 'btn btn-default')); ?>
+    <? echo anchor('users', 'Пользователи', array('class' => 'btn btn-default')); ?>
 
 </div>
 

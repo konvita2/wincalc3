@@ -21,9 +21,9 @@
         </ul>
 
         <? if($this->ion_auth->logged_in()): ?>
-            <?  $ar = array('class' => "btn btn-default navbar-btn navbar-right");
+            <?  $ar = array('class' => "btn btn-default navbar-btn navbar-right", 'style' => 'margin-right: 4px;');
                 $usr = $this->ion_auth->user()->row();
-                $usr = $usr->email;
+                $usr = $usr->username;
                 echo  anchor('admin/logout', 'Выход ' . $usr , $ar);
             ?>
         <? else: ?>

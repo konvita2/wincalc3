@@ -15,11 +15,28 @@ class Users extends CI_Controller {
         parent::__construct();
     }
 
-    /* @todo - uncomment and fill body of the function
-    public function _remap(){
-
+    public function _remap($method, $params = array()){
+        if(!$this->ion_auth->logged_in()){  // @todo add admin priv-s checking
+            redirect('admin/required', 'refresh');
+        }
+        else{
+            if($method == 'index'){
+                $this->index();
+            }
+            elseif($method == 'add'){
+                $this->add();
+            }
+            elseif($method == 'edit'){
+                $this->edit($params[0]);
+            }
+            elseif($method == 'del'){
+                $this->del($params[0]);
+            }
+            elseif($method == 'psw'){
+                $this->psw($params[0]);
+            }
+        }
     }
-    */
 
     public function index(){
         $this->load->model('Users_model', 'users');

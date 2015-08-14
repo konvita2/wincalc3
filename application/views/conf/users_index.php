@@ -27,7 +27,7 @@ $this->load->view('main_head', $dt);
             <th>Логин</th>
             <th>Email</th>
             <th>Описание</th>
-            <th>Активность</th>
+            <th>Доп. инфо</th>
             <th>Админ</th>
             <th>Действия</th>
         </thead>
@@ -39,11 +39,12 @@ $this->load->view('main_head', $dt);
                 <? $active = $row['active'] == 0 ? "" : "Да"; ?>
                 <? $admin = $row['admin'] == 0 ? "" : "Да"; ?>
 
+
                 <td><?=$row['id']?></td>
                 <td><?=$row['username']?></td>
                 <td><?=$row['email']?></td>
                 <td><?=$row['description']?></td>
-                <td><?=$active?></td>
+                <td><?=$row['calcinfo']?></td>
                 <td><?=$admin?></td>
                 <td> <!-- actions -->
 
@@ -55,6 +56,11 @@ $this->load->view('main_head', $dt);
                     <? $href = base_url('index.php/users/del/' . $row['id']); ?>
                     <a class="btn btn-primary" type="button" href="<?=$href?>" title="Удалить">
                         <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+
+                    <? $href = base_url('index.php/users/calcedit/' . $row['id']); ?>
+                    <a class="btn btn-primary" type="button" href="<?=$href?>" title="Показатели калькуляции">
+                        <span class="glyphicon glyphicon-tags"></span>
                     </a>
 
                     <? $href = base_url('index.php/users/psw/' . $row['id']); ?>

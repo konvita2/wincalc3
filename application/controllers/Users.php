@@ -35,6 +35,9 @@ class Users extends CI_Controller {
             elseif($method == 'psw'){
                 $this->psw($params[0]);
             }
+            elseif($method == 'calcedit'){
+                $this->calcedit($params[0]);
+            }
         }
     }
 
@@ -224,6 +227,47 @@ class Users extends CI_Controller {
         }
         else{
             // @todo 404
+        }
+    }
+
+    /**
+     * редактирование параметров калькуляции для пользователя
+     * @param $id - user's id
+     */
+    public function calcedit($id){
+        $this->load->library('form_validation');
+        $this->load->model('Users_model', 'users');
+
+        // test if user exists
+        if($this->users->user_exists($id)){
+            // read calc parameters
+            $calc = $this->users->get_calc($id);
+
+            $data['user_id'] = $id;
+            $data['username'] = $this->users->get_username_by_id($id);
+
+            $data['prod'] = $calc['prod'];
+            $data['mater'] = $calc['mater'];
+
+            //set rules
+            $this->form_validation->set_rules('mater', 'Накладные расходы материалов', 'required|numeric');
+            $this->form_validation->set_rules('prod', 'Накладные расходы производства', 'required|numeric');
+
+            if($this->form_validation->run() == FALSE){
+                $this->load->view('conf/users_calc', $data);
+            }
+            else{
+                $ar = array(
+                    'mater' => $this->input->post('mater'),
+                    'prod' => $this->input->post('prod'),
+                );
+                $this->users->set_calc($id, $ar);
+
+                redirect('users/index', 'refresh');
+            }
+        }
+        else{
+            // @todo error 404
         }
     }
 

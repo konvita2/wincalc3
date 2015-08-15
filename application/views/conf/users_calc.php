@@ -32,6 +32,14 @@ $this->load->view('main_head', $dt);
         <em><?=$username?></em>
     </h3>
 
+    <?php
+    // validation errors
+    $estr = validation_errors();
+    $evisi = !empty($estr) ? '' : 'style="display: none"';
+    ?>
+
+    <div class="alert alert-danger" role="alert" <?=$evisi?> > <? echo $estr; ?> </div>
+
     <!-- form open -->    
     <?
     $ar = array('class' => 'form-horizontal');

@@ -27,9 +27,19 @@ $this->load->view('main_head', $data);
 
     <h3>Справочники</h3>
 
-    <? echo anchor('conf_curr', 'Валюта', array('class' => 'btn btn-default')); ?>
-    <? echo anchor('conf_glass', 'Стеклопакеты', array('class' => 'btn btn-default')); ?>
-    <? echo anchor('users', 'Пользователи', array('class' => 'btn btn-default')); ?>
+    <div class="row">
+        <? echo anchor('users', 'Пользователи', array('class' => 'btn btn-default')); ?>
+    </div>
+
+    <div class="row">
+        <? echo anchor('conf_curr', 'Валюта', array('class' => 'btn btn-default')); ?>
+    </div>
+
+    <div class="row">
+        <? echo anchor('conf_glass', 'Стеклопакеты', array('class' => 'btn btn-default')); ?>
+        <? echo anchor('profil', 'Оконные профили', array('class' => 'btn btn-default')); ?>
+    </div>
+
 
 </div>
 

@@ -121,10 +121,10 @@ $this->load->view('main_head', $dt);
     ?>
 
         <div class="form-group">
-            <label for="input_username" class="control-label col-sm-2">Код</label>
+            <label for="input_id" class="control-label col-sm-2">Код</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" readonly
-                       id="input_username" name="id" value="<?=$id?>"/>
+                       id="input_id" name="id" value="<?=$id?>"/>
             </div>
         </div>
 

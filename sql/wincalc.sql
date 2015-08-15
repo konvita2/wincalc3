@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Авг 13 2015 г., 22:52
+-- Время создания: Авг 15 2015 г., 20:00
 -- Версия сервера: 5.5.35
 -- Версия PHP: 5.4.4-14+deb7u7
 
@@ -134,6 +134,28 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `profil`
+--
+
+CREATE TABLE IF NOT EXISTS `profil` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sym` varchar(20) NOT NULL,
+  `description` varchar(250) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Дамп данных таблицы `profil`
+--
+
+INSERT INTO `profil` (`id`, `sym`, `description`) VALUES
+(1, 'BrD_70', '70мм BrD70'),
+(2, 'ED_70', '70мм ED70'),
+(3, 'ED_TD_60', '60мм Системы');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -163,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1439490547, 1, 'Admin', 'Adminenko', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1439654343, 1, 'Admin', 'Adminenko', 'ADMIN', '0'),
 (2, '192.168.1.46', 'tom', '$2y$08$XTH1H3Ueg3S5XrwVSRX2Leyo9Vfu/t0wERrfmYX4w5OJqq8poRjBq', NULL, 'to@a.b', NULL, NULL, NULL, NULL, 1439298318, NULL, 1, 'tom', 'smith', 'tom_smith', '123456'),
 (22, '192.168.1.46', 'www', '$2y$08$cnrpcKwNcQoJYD96tlEXP.oQuCer9CMJvyers7WGgd/TT205k66fC', NULL, 'www@a.b', NULL, NULL, NULL, NULL, 1439377818, NULL, 1, '', '', '', ''),
 (23, '192.168.1.46', 'wwwa', '$2y$08$urrd.p/L/3nnR3RVlM6rS./AmQFQKNs3r2cRVWpwi1zUeSUfNZmNC', NULL, 'wwwa@a.b', NULL, NULL, NULL, NULL, 1439377845, 1439377872, 1, 'Вася', 'Сидоров', 'АРКА', '123456');
@@ -180,7 +202,16 @@ CREATE TABLE IF NOT EXISTS `users_calc` (
   `mater` decimal(10,2) DEFAULT '0.00',
   `prod` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп данных таблицы `users_calc`
+--
+
+INSERT INTO `users_calc` (`id`, `user_id`, `mater`, `prod`) VALUES
+(1, 2, 4.00, 950.00),
+(2, 22, 4.00, 950.00),
+(3, 23, 4.00, 950.00);
 
 -- --------------------------------------------------------
 

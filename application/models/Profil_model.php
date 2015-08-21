@@ -28,9 +28,27 @@ class Profil_model extends CI_Model {
             $arow = array(
                 'id' => $row->id,
                 'nam' => $row->sym,
+                'sym' => $row->sym,
                 'description' => $row->description
             );
             $res[] = $arow;
+        }
+
+        return $res;
+    }
+
+    /**
+     * get profil description by sym
+     * @param $sym
+     * @return string
+     */
+    public function get_description_by_sym($sym){
+        $res = '';
+
+        $query = $this->db->get_where('profil' , array('sym' => $sym), 1);
+        if($query->num_rows() > 0){
+            $row = $query->row();
+            $res = $row->description;
         }
 
         return $res;

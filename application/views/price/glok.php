@@ -23,6 +23,8 @@ $this->load->view('main_head', $dt);
 
     <h3>Прайс глухого окна</h3>
 
+    <h4>Профиль: <?=$profil_description?></h4>
+
     <table class="table">
 
         <thead>

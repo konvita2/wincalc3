@@ -68,7 +68,9 @@ $this->load->view('main_head', $data);
                         сохраняют свой опрятный вид. Установка пластиковых окон 
                         принесет уют в Ваш дом и комфорт в Ваш офис.</p>                        
                         
-                        <div><button type="button" class="btn btn-primary">Расчет</button></div>
+                        <div>
+                            <? echo anchor('main/calcgl', 'Расчет', array('class' => 'btn btn-primary'));?>
+                        </div>
                     </div>
                     
                 </div>

@@ -11,7 +11,7 @@ $this->load->helper('url');
 <html lang="ru">
 
 <?
-$dt['tit'] = 'Загрузка прайса глухого окна';
+$dt['tit'] = 'Работа с прайсами';
 $this->load->view('main_head', $dt);
 ?>
 
@@ -24,18 +24,31 @@ $this->load->view('main_head', $dt);
     <h3>Работа с прайсами</h3>
 
     <?
-    $ar = array('class' => "btn btn-default");
-    echo anchor('price/load', 'Загрузки прайс', $ar);
+    // class for btn
+    $ar = array('class' => "btn btn-primary");
     ?>
 
-</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Просмотр текущих цен на профиль
+        </div>
+        <div class="panel-body">
+            <?
+            echo anchor('price/showgl', 'Глухое окно', $ar);
+            ?>
+        </div>
+    </div>
 
-<div class="container text-info">
-
-    <?
-
-
-    ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Новые цены
+        </div>
+        <div class="panel-body">
+            <?
+            echo anchor('price/load', 'Загрузки прайс', $ar);
+            ?>
+        </div>
+    </div>
 
 </div>
 

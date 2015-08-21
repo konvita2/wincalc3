@@ -25,9 +25,10 @@ class Price_gluh_model extends CI_Model {
 
     }
 
-    public function add_array_by_date($dat, $ardata){
+    public function add_array_by_date($dat, $ardata, $profil_sym){
         // deactivate all
         $ar = array('active' => 0);
+        $this->db->where('profil_sym', $profil_sym);
         $this->db->update('win_calc_gluh', $ar);
 
         // add new array
@@ -41,6 +42,7 @@ class Price_gluh_model extends CI_Model {
                 'price' => $row['p'],
                 'dat' => $dat,
                 'active' => 1,
+                'profil_sym' => $profil_sym,
             );
             $this->db->insert('win_calc_gluh', $newrow);
         }
@@ -59,6 +61,20 @@ class Price_gluh_model extends CI_Model {
         return $res;
     }
 
+    /**
+     * Получить активные цены для глухого окна
+     */
+    public function get_all(){
+        $res = array();
 
+        $this->db->order_by('minx asc, miny asc');
+        $this->db->where('active', 1);
+        $query = $this->db->get('win_calc_gluh');
+        foreach ($query->result_array() as $row){
+            $res[] = $row;
+        }
+
+        return $res;
+    }
 
 } 

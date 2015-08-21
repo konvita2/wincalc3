@@ -12,7 +12,7 @@ class Main extends CI_Controller {
         $this->load->view('main');
     }
     
-    public function calcgluh(){
+    public function calcgl(){
         $this->load->view('calcgluh');
     }
 

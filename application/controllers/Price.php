@@ -8,7 +8,28 @@ class Price extends CI_Controller {
 
     }
 
-    // @todo remap
+    /*
+     * restrict access
+     */
+    public function _remap($method, $params = array()){
+        if(!$this->ion_auth->logged_in()){  // @todo add admin priv-s checking
+            redirect('admin/required', 'refresh');
+        }
+        else{
+            if($method == 'index'){
+                $this->index();
+            }
+            elseif($method == 'glload'){
+                $this->glload();
+            }
+            elseif($method == 'load'){
+                $this->load();
+            }
+            elseif($method == 'showgl'){
+                $this->showgl();
+            } //@todo add other options...
+        }
+    }
 
     public function index(){
         $this->load->view('price/index');
@@ -59,9 +80,13 @@ class Price extends CI_Controller {
 
             $dt = date('Ymd');
 
-            $this->load->model('Price_gluh_model', 'price');
-            $this->price->add_array_by_date($dt, $resar);
+            $profil_sym = $this->input->post('profil');
 
+            $this->load->model('Price_gluh_model', 'price');
+            $this->price->add_array_by_date($dt, $resar, $profil_sym);
+
+            $this->load->model('Profil_model', 'profil');
+            $data['profil_description'] = $this->profil->get_description_by_sym($profil_sym);
             $this->load->view('price/glok', $data);
         }
 
@@ -71,8 +96,21 @@ class Price extends CI_Controller {
      *
      */
     public function load(){
+        $this->load->model('Profil_model', 'profil');
+        $prof = $this->profil->get_all();
+
         $data['errors'] = '';
+        $data['profil'] = $prof;
         $this->load->view('price/load', $data);
+    }
+
+    /**
+     * показать таблицу цен для глухого окна
+     */
+    public function showgl(){
+        $this->load->model('Price_gluh_model', 'price');
+        $data['rows'] = $this->price->get_all();
+        $this->load->view('price/showgl',$data);
     }
 
 

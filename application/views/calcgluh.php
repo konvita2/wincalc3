@@ -88,7 +88,7 @@
                     $winW = $_POST['winWidth'];
                     $winH = $_POST['winHeight'];
                     $winS = $_POST['winSystem'];
-                    $winG = $_POST['winGlass'];            
+                    $winG = $_POST['winGlass'];
                                                 
                 ?>
                 

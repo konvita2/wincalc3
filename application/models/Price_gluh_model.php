@@ -77,4 +77,21 @@ class Price_gluh_model extends CI_Model {
         return $res;
     }
 
+    /**
+     * Получить активные цены для глухого окна с указанным профилем     *
+     * */
+    public function get_all_by_profil($profil_sym){
+        $res = array();
+
+        $this->db->order_by('minx asc, miny asc');
+        $this->db->where('active', 1);
+        $this->db->where('profil_sym', $profil_sym);
+        $query = $this->db->get('win_calc_gluh');
+        foreach ($query->result_array() as $row){
+            $res[] = $row;
+        }
+
+        return $res;
+    }
+
 } 

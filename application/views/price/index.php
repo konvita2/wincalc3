@@ -34,7 +34,7 @@ $this->load->view('main_head', $dt);
         </div>
         <div class="panel-body">
             <?
-            echo anchor('price/showgl', 'Глухое окно', $ar);
+            echo anchor('price/filtergl', 'Глухое окно', $ar);
             ?>
         </div>
     </div>

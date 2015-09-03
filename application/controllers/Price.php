@@ -22,8 +22,14 @@ class Price extends CI_Controller {
             elseif($method == 'glload'){
                 $this->glload();
             }
+            elseif($method == 'filtergl'){
+                $this->filtergl();
+            }
             elseif($method == 'load'){
                 $this->load();
+            }
+            elseif($method == 'afilter'){
+                $this->afilter();
             }
             elseif($method == 'showgl'){
                 $this->showgl();
@@ -33,6 +39,20 @@ class Price extends CI_Controller {
 
     public function index(){
         $this->load->view('price/index');
+    }
+
+    /**
+     * open index-like page with ajax filter
+     */
+    public function filtergl(){
+        $this->load->model('Profil_model', 'profil');
+
+        $attr = array(
+            'id'=>'profil'
+        );
+
+        $data['select'] = $this->profil->get_html_select($attr);
+        $this->load->view('price/filter', $data);
     }
 
     /**
@@ -111,6 +131,26 @@ class Price extends CI_Controller {
         $this->load->model('Price_gluh_model', 'price');
         $data['rows'] = $this->price->get_all();
         $this->load->view('price/showgl',$data);
+    }
+
+    /* --------------------
+     * AJAX
+     * */
+    public function afilter(){
+        $resar = array();
+        $profil_sym = $this->input->post('profil_sym');
+
+        $this->load->model('Price_gluh_model', 'price');
+        $rows = $this->price->get_all_by_profil($profil_sym);
+
+        // get profil description
+        $this->load->model('Profil_model', 'profil');
+        $profil_desc = $this->profil->get_description_by_sym($profil_sym);
+
+        $resar["profil"] = $profil_desc;
+        $resar["table"] = $rows;
+
+        echo json_encode($resar);
     }
 
 

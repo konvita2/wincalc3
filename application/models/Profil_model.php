@@ -116,6 +116,33 @@ class Profil_model extends CI_Model {
         $this->db->delete('profil', array('id' => $id));
     }
 
+    /**
+     * get select-option set for all
+     * ordered by sym
+     * $attr - attributes as array
+     */
+    public function get_html_select($attr = array()){   // @todo add array with class (or smth else) attribute
+        $res = "";
+
+        $loc = '';
+        foreach ($attr as $atrkey => $atrval) {
+            $loc = $atrkey . '="' . $atrval . '" ';
+        }
+
+        $res = "<select $loc >";
+
+        $res .= "<option value=\"0\">-- не выбран --</option>";
+
+        $arselect = $this->get_all();
+        foreach($arselect as $row){
+            $sym = $row['sym'];
+            $des = $row['description'];
+            $res .= "<option value=\"$sym\">$des</option>";
+        }
+        $res .= '</select>';
+
+        return $res;
+    }
 
 
 

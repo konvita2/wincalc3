@@ -23,6 +23,14 @@ $this->load->view('main_head', $dt);
 
     <h3>Прайс глухого окна</h3>
 
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <? $ar = array('class' => 'btn btn-primary'); ?>
+            <? echo anchor('price','Работа с прайсами',$ar); ?>
+            <? echo anchor('price/load','Загрузить новый прайс',$ar); ?>
+        </div>
+    </div>
+
     <h4>Профиль: <?=$profil_description?></h4>
 
     <table class="table">

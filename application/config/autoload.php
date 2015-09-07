@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database', 'ion_auth', 'mycsv');
+$autoload['libraries'] = array('database', 'ion_auth', 'mycsv', 'calculator_gluh');
 
 
 /*

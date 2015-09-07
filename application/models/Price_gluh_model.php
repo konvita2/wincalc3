@@ -94,4 +94,26 @@ class Price_gluh_model extends CI_Model {
         return $res;
     }
 
+    /**
+     * Получить активные цены для окна с указанными профилем указанного размера
+     * если размеров нет - возвращаем -1
+     */
+    public function get_price_by_profil_size($profil_sym, $width, $height){
+        $res = -1;
+
+        $this->db->where('active', 1);
+        $this->db->where('profil_sym', $profil_sym);
+        $this->db->where('minx <=', $width);
+        $this->db->where('maxx >=', $width);
+        $this->db->where('miny <=', $height);
+        $this->db->where('maxy >=', $height);
+        $query = $this->db->get('win_calc_gluh', 1);
+        if($query->num_rows() > 0){
+            $row = $query->row;
+            $res = $row->price;
+        }
+
+        return $res;
+    }
+
 } 

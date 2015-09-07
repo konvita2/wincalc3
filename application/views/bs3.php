@@ -32,12 +32,59 @@
             Enter a valid email address
         </div>
 
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropMenu1"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Actions
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropMenu1">
+                <li><a href="#">Action</a></li>
+                <li class="dropdown-header">additional</li>
+                <li><a href="#">Action 2</a></li>
+                <li><a href="#">Action 3</a></li>
+                <li><button type="button">Action 3</button></li>
+            </ul>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">Left</button>
+            <button type="button" class="btn btn-default">Mid</button>
+            <button type="button" class="btn btn-default">Right</button>
+        </div>
+
         <div>
             <button id="btn0" name="btn0" type="button">Test ajax 01</button>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-body" id="respanel"></div>
+        </div>
+
+        <br/>
+
+        <div class="btn-toolbar" role="toolbar" aria-label="...">
+            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Left</button>
+                <button type="button" class="btn btn-default">Mid</button>
+                <button type="button" class="btn btn-default">Right</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="...">...</div>
+            <div class="btn-group" role="group" aria-label="...">...</div>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
         </div>
 
 

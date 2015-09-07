@@ -28,6 +28,7 @@ $this->load->view('main_head', $dt);
                 <th>Код</th>
                 <th>Обозначение</th>
                 <th>Описание</th>
+                <th>Ширина для стеклопакета</th>
                 <th>Действия</th>
             </thead>
 
@@ -38,6 +39,7 @@ $this->load->view('main_head', $dt);
                     <td><?=$row['id']?></td>
                     <td><?=$row['nam']?></td>
                     <td><?=$row['description']?></td>
+                    <td><?=$row['width_for_glass']?></td>
 
                     <td> <!-- actions -->
 

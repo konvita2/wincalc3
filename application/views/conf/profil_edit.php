@@ -100,6 +100,15 @@ $this->load->view('main_head', $dt);
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="width_for_glass" class="control-label col-sm-2">Ширина для стеклопакета</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" <?=$dlmark?>
+                   id="width_for_glass" name="width_for_glass"
+                   value="<? echo set_value('width_for_glass',$width_for_glass); ?>"/>
+        </div>
+    </div>
+
     <!-- buttons -->
     <div class="form-group">
 

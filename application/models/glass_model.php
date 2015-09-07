@@ -79,11 +79,96 @@ class Glass_model extends CI_Model {
     }
 
     /**
+     *  $nam - symbolic description by glass
+     */
+    function get_desc_by_name($nam){
+        $res = '';
+        $ar = $this->get_row_by_name($nam);
+        if(!empty($ar)){
+            $res = $ar['description'];
+        }
+        return $res;
+    }
+
+    /**
+     *  $id - glass id
+     */
+    function get_desc_by_id($id){
+        $res = '';
+        $ar = $this->get_row_by_id($id);
+        if(!empty($ar)){
+            $res = $ar['description'];
+        }
+        return $res;
+    }
+
+    /**
+     * get string as 4-10-4 (СП оджнокамерный)
+     *  $id - glass id
+     */
+    function get_namdesc_by_id($id){
+        $res = '';
+        $ar = $this->get_row_by_id($id);
+        if(!empty($ar)){
+            $res = $ar['nam'] . " (" . $ar['description'] . ")";
+        }
+        return $res;
+    }
+
+
+    /**
      *
      * @param $data
      */
     function add($data){
         $this->db->insert('glass',$data);
+    }
+
+    /**
+     * get select list as html
+     * filled by glasses
+     * @param $attr - attribute set
+     */
+    public function get_html_select($attr){
+        $res = '';
+
+        $loc = '';
+        foreach ($attr as $atrkey => $atrval) {
+            $loc = $atrkey . '="' . $atrval . '" ';
+        }
+
+        $res = "<select $loc >";
+
+        $res .= "<option value=\"0\">-- не выбран --</option>";
+
+        $arselect = $this->get_all();
+        foreach($arselect as $row){
+            $id = $row['id'];
+            $nam = $row['nam'];
+            $res .= "<option value=\"$id\">$nam</option>";
+        }
+        $res .= '</select>';
+
+        return $res;
+
+    }
+
+    /**
+     * получить стоимость стеклопакета указанного типа и размера
+     * @param $glass_id
+     * @param $area - площадь в мм
+     * returns -1 if error
+     */
+    public function get_glass_cost($glass_id, $area){
+        $res = -1;
+
+        $row = $this->get_row_by_id($glass_id);
+        if(!empty($row)){
+            $price = $row['price'];
+            $res = $price * $area / 1000000; // считаем что цена СП в кв м
+        }
+
+        return $res;
     }
 
 } 

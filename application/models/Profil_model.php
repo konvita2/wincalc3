@@ -7,6 +7,7 @@ class Profil_model extends CI_Model {
      * id
      * sym as nam
      * description
+     * width_for_glass
      */
 
     /**
@@ -29,7 +30,8 @@ class Profil_model extends CI_Model {
                 'id' => $row->id,
                 'nam' => $row->sym,
                 'sym' => $row->sym,
-                'description' => $row->description
+                'description' => $row->description,
+                'width_for_glass' => $row->width_for_glass
             );
             $res[] = $arow;
         }
@@ -66,6 +68,26 @@ class Profil_model extends CI_Model {
             $res['id'] = $row->id;
             $res['nam'] = $row->sym;
             $res['description'] = $row->description;
+            $res['width_for_glass'] = $row->width_for_glass;
+        }
+
+        return $res;
+    }
+
+    /**
+     * read row by sym
+     * @param $sym
+     */
+    public function get_by_sym($sym){
+        $res = array();
+
+        $query = $this->db->get_where('profil', array('sym' => $sym));
+        if($query->num_rows() > 0){
+            $row = $query->row();
+            $res['id'] = $row->id;
+            $res['nam'] = $row->sym;
+            $res['description'] = $row->description;
+            $res['width_for_glass'] = $row->width_for_glass;
         }
 
         return $res;
@@ -92,7 +114,8 @@ class Profil_model extends CI_Model {
     public function add($row){
         $ar = array(
             'sym' => $row['nam'],
-            'description' => $row['description']
+            'description' => $row['description'],
+            'width_for_glass' => $row['width_for_glass'],
         );
         $this->db->insert('profil', $ar);
     }
@@ -103,7 +126,8 @@ class Profil_model extends CI_Model {
     public function update_by_id($id, $row){
         $ar = array(
             'sym' => $row['nam'],
-            'description' => $row['description']
+            'description' => $row['description'],
+            'width_for_glass' => $row['width_for_glass'],
         );
         $this->db->where('id', $id);
         $this->db->update('profil', $ar);
@@ -121,7 +145,7 @@ class Profil_model extends CI_Model {
      * ordered by sym
      * $attr - attributes as array
      */
-    public function get_html_select($attr = array()){   // @todo add array with class (or smth else) attribute
+    public function get_html_select($attr = array()){
         $res = "";
 
         $loc = '';
@@ -140,6 +164,29 @@ class Profil_model extends CI_Model {
             $res .= "<option value=\"$sym\">$des</option>";
         }
         $res .= '</select>';
+
+        return $res;
+    }
+
+    /**
+     * Получить площадь СП для рамы указанного размера
+     * возв -1 - если ошибка
+     * @param $profil_sym
+     * @param $width
+     * @param $height
+     */
+    public function get_glass_area($profil_sym, $width, $height){
+        $res = -1;
+
+        $row = $this->get_by_sym($profil_sym);
+        if(!empty($row)){
+            $wg = $row['width_for_glass'];
+            $res = ($width - 2 * $wg) * ($height - 2 * $wg);
+            if($res < 0 )
+            {
+                $res = -1;
+            }
+        }
 
         return $res;
     }

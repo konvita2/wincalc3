@@ -90,6 +90,7 @@ class Profil extends CI_Controller {
             $data['id'] = $row['id'];
             $data['nam'] = $row['nam'];
             $data['description'] = $row['description'];
+            $data['width_for_glass'] = $row['width_for_glass'];
 
             // set rules
             $this->form_validation->set_rules('nam', 'Обозначение', 'required');
@@ -102,6 +103,7 @@ class Profil extends CI_Controller {
                 $ar = array(
                     'nam' => $this->input->post('nam'),
                     'description' => $this->input->post('description'),
+                    'width_for_glass' => $this->input->post('width_for_glass'),
                 );
                 $this->profil->update_by_id($id, $ar);
 

@@ -214,7 +214,7 @@ class Users_model extends CI_Model {
     /**
      * установить параметры калькуляции для указанного пользователя     *
      * @param $id
-     * @param $calc - массив с ключами 'prod' & 'mater'
+     * @param $calc - массив с ключами 'prod' & 'mater' & 'marg'
      */
     public function set_calc($id, $calc){
         // test if exist
@@ -239,7 +239,8 @@ class Users_model extends CI_Model {
     public function get_calc($id){
         $res = array(
             'mater' => 0,
-            'prod' => 0
+            'prod' => 0,
+            'marg' => 0
         );
 
         if($this->_calc_exists($id)){
@@ -248,6 +249,7 @@ class Users_model extends CI_Model {
                 $row = $query->row();
                 $res['mater'] = $row->mater;
                 $res['prod'] = $row->prod;
+                $res['marg'] = $row->marg;
             }
         }
 
@@ -263,7 +265,9 @@ class Users_model extends CI_Model {
 
         if($this->_calc_exists($id)){
             $calc = $this->get_calc($id);
-            $res = trim(strval($calc['mater'])) . '/' . trim(strval($calc['prod']));
+            $res = trim(strval($calc['mater'])) . '/'
+                . trim(strval($calc['prod'])) . '/'
+                . trim(strval($calc['marg']));
         }
 
         return $res;

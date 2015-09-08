@@ -49,7 +49,7 @@ $this->load->view('main_head', $dt);
     <div class="form-group">
         <label for="mater" class="control-label col-sm-4">Накладные расходы материалов, %</label>
         <div class="col-sm-2">
-            <input type="number" class="form-control"
+            <input type="text" class="form-control"
                    id="mater" name="mater" value="<?=$mater?>"/>
         </div>
     </div>
@@ -57,10 +57,19 @@ $this->load->view('main_head', $dt);
     <div class="form-group">
         <label for="prod" class="control-label col-sm-4">Накладные расходы производства, %</label>
         <div class="col-sm-2">
-            <input type="number" class="form-control"
+            <input type="text" class="form-control"
                    id="prod" name="prod" value="<?=$prod?>"/>
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="marg" class="control-label col-sm-4">Наценка, %</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control"
+                   id="marg" name="marg" value="<?=$marg?>"/>
+        </div>
+    </div>
+
 
     <!-- buttons -->
     <div class="form-group">

@@ -248,10 +248,12 @@ class Users extends CI_Controller {
 
             $data['prod'] = $calc['prod'];
             $data['mater'] = $calc['mater'];
+            $data['marg'] = $calc['marg'];
 
             //set rules
             $this->form_validation->set_rules('mater', 'Накладные расходы материалов', 'required|numeric');
             $this->form_validation->set_rules('prod', 'Накладные расходы производства', 'required|numeric');
+            $this->form_validation->set_rules('marg', 'Наценка', 'required|numeric');
 
             if($this->form_validation->run() == FALSE){
                 $this->load->view('conf/users_calc', $data);
@@ -260,6 +262,7 @@ class Users extends CI_Controller {
                 $ar = array(
                     'mater' => $this->input->post('mater'),
                     'prod' => $this->input->post('prod'),
+                    'marg' => $this->input->post('marg'),
                 );
                 $this->users->set_calc($id, $ar);
 

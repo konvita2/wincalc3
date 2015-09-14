@@ -13,7 +13,7 @@
 <html lang="en">
 
 <?php
-$data['tit'] = 'Административный раздел ';
+$data['tit'] = 'Административный раздел';
 $this->load->view('main_head', $data);
 ?>
 
@@ -23,7 +23,7 @@ $this->load->view('main_head', $data);
 
 <div class="container">
 
-    <h2>Административный раздел 111</h2>
+    <h2>Административный раздел</h2>
 
     <h3>Справочники</h3>
 

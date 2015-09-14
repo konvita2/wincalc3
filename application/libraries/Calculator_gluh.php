@@ -3,6 +3,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Calculator_gluh {
 
+    const MANUFACTURING_COST = 5.45; // стоимость переработки из адуло
+
     public $width = 0;
     public $height = 0;
     public $glass_id = 0;
@@ -77,17 +79,22 @@ class Calculator_gluh {
             return -1;
         }
 
+        log_message('debug', "!!! profil cost is $profil_cost");
+
         // glass cost
         $glass_area = $this->CI->profil->get_glass_area($this->profil_sym, $this->width, $this->height);
         if($glass_area == -1){
             $this->error_msg = "Некорректное вычисление площади стеклопакета";
             return -1;
         }
+        log_message('debug', "!!! glass area is $glass_area");
+
         $glass_cost = $this->CI->glass->get_glass_cost($this->glass_id, $glass_area);
         if($glass_cost == -1){
             $this->error_msg = "Неправильно указан тип стеклопакета";
             return -1;
         }
+        log_message('debug', "!!! glass cost is $glass_cost");
 
         // row cost
         $row_cost = $glass_cost + $profil_cost;
@@ -97,17 +104,18 @@ class Calculator_gluh {
         $mater = $user_calc['mater'];
         $prod = $user_calc['prod'];
         $marg = $user_calc['marg'];
+        $discount = $user_calc['discount'];
 
         // расчет стоимости по формуле
-        $cost = ($row_cost + ($mater + $mater * $prod)) * (100 + $marg)/100;
+        $cost = $row_cost + self::MANUFACTURING_COST
+            + $mater / 100 * $row_cost
+            + $prod / 100 * self::MANUFACTURING_COST;
+
+        $cost += $cost * $marg / 100;
 
         // скидка для дилера
         // @todo make dealer skid
-
-
-
-
-
+        $cost -= $cost * $discount / 100;
 
         $res = $cost;
 

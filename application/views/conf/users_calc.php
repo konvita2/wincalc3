@@ -1,22 +1,21 @@
-<?
+<?php
 // libraries
 $this->load->helper('form');
 $this->load->helper('url');
 ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Пользователи показатели калькуляции';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<?
-
+<?php
 /**
  * @todo
  * -
@@ -24,7 +23,7 @@ $this->load->view('main_head', $dt);
 
 ?>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
     <h3>
@@ -38,11 +37,10 @@ $this->load->view('main_head', $dt);
     $evisi = !empty($estr) ? '' : 'style="display: none"';
     ?>
 
-    <div class="alert alert-danger" role="alert" <?=$evisi?> > <? echo $estr; ?> </div>
+    <div class="alert alert-danger" role="alert" <?=$evisi?> > <?php echo $estr; ?> </div>
 
     <!-- form open -->    
-    <?
-    $ar = array('class' => 'form-horizontal');
+    <?php    $ar = array('class' => 'form-horizontal');
     echo form_open("users/calcedit/$user_id", $ar);
     ?>
 
@@ -79,8 +77,7 @@ $this->load->view('main_head', $dt);
                 Сохранить
             </button>
 
-            <?
-            $ar = array(
+            <?php            $ar = array(
                 'type' => 'button',
                 'class' => 'btn btn-primary',
                 'name' => 'btn_cancel',
@@ -97,7 +94,7 @@ $this->load->view('main_head', $dt);
 
 
     <!-- form close -->
-    <? echo form_close(); ?>    
+    <?php echo form_close(); ?>
 
 </div>
 

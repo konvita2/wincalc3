@@ -1,30 +1,29 @@
-<? defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<?
+<?php
 // libraries
 $this->load->helper('form');
 $this->load->helper('url');
 ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Работа с прайсами';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
     <h3>Работа с прайсами</h3>
 
-    <?
-    // class for btn
+    <?php    // class for btn
     $ar = array('class' => "btn btn-primary");
     ?>
 
@@ -33,8 +32,7 @@ $this->load->view('main_head', $dt);
             Просмотр текущих цен на профиль
         </div>
         <div class="panel-body">
-            <?
-            echo anchor('price/filtergl', 'Глухое окно', $ar);
+            <?php            echo anchor('price/filtergl', 'Глухое окно', $ar);
             ?>
         </div>
     </div>
@@ -44,8 +42,7 @@ $this->load->view('main_head', $dt);
             Новые цены
         </div>
         <div class="panel-body">
-            <?
-            echo anchor('price/load', 'Загрузки прайс', $ar);
+            <?php            echo anchor('price/load', 'Загрузки прайс', $ar);
             ?>
         </div>
     </div>

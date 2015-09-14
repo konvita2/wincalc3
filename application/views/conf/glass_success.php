@@ -1,13 +1,13 @@
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 <html lang="ru">
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_head'); ?>
+<?php $this->load->view('main_head'); ?>
 
 <body>
 
-<? $this->load->view('main_head'); ?>
+<?php $this->load->view('main_head'); ?>
 
 <div class="container">
 

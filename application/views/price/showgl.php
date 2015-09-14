@@ -1,20 +1,20 @@
-<? defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Прайс на глухое окно (без СП)';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -33,7 +33,7 @@ $this->load->view('main_head', $dt);
         </thead>
 
         <tbody>
-            <? foreach($rows as $row): ?>
+            <?php foreach($rows as $row): ?>
                 <tr>
                     <td><?=$row['minx']?></td>
                     <td><?=$row['maxx']?></td>
@@ -41,7 +41,7 @@ $this->load->view('main_head', $dt);
                     <td><?=$row['maxy']?></td>
                     <td><?=$row['price']?></td>
                 </tr>
-            <? endforeach ?>
+            <?php endforeach ?>
         </tbody>
 
 </div>

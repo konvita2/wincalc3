@@ -1,20 +1,20 @@
-<? defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Справочник профилей';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
     <div class="container">
 
@@ -33,7 +33,7 @@ $this->load->view('main_head', $dt);
             </thead>
 
             <tbody>
-                <? foreach ($rows as $row): ?>
+                <?php foreach ($rows as $row): ?>
                     <tr>
 
                     <td><?=$row['id']?></td>
@@ -43,12 +43,12 @@ $this->load->view('main_head', $dt);
 
                     <td> <!-- actions -->
 
-                        <? $href = base_url('index.php/profil/edit/' . $row['id']); ?>
+                        <?php $href = base_url('index.php/profil/edit/' . $row['id']); ?>
                         <a class="btn btn-primary" href="<?=$href?>" title="Редактировать">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
 
-                        <? $href = base_url('index.php/profil/del/' . $row['id']); ?>
+                        <?php $href = base_url('index.php/profil/del/' . $row['id']); ?>
                         <a class="btn btn-primary" type="button" href="<?=$href?>" title="Удалить">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
@@ -56,7 +56,7 @@ $this->load->view('main_head', $dt);
                     </td>
 
                     </tr>
-                <? endforeach ?>
+                <?php endforeach ?>
             </tbody>
 
         </table>

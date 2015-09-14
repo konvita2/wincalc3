@@ -20,8 +20,13 @@ class Calc extends CI_Controller {
 
     // no index
 
+    private $user_id = 0;
+
     public function __construct(){
         parent::__construct();
+        //$this->user_id = $this->ion_auth->user()->id;
+        $row = $this->ion_auth->user()->row();
+        $this->user_id = $row->id;
     }
 
     /**
@@ -50,6 +55,8 @@ class Calc extends CI_Controller {
      * ajax-response for gluh win
      */
     public function gluhajax(){
+        $user_id = $this->user_id;
+
         $task = $this->input->post('task');
 
         if($task == 'calc'){
@@ -61,9 +68,13 @@ class Calc extends CI_Controller {
             $jsonans = array();
 
             $inp = new Calculator_gluh();
-            $inp->set_input_data($width, $height, $glass_id, $profil_sym);
+            $inp->set_input_data($width, $height, $glass_id, $profil_sym, $user_id);
 
             $jsonans["input"] = $inp->get_input_data();
+
+            // calculation
+            $cost = $inp->get_cost();
+            $jsonans["cost"] = $cost;
 
             echo json_encode($jsonans);
         }

@@ -16,21 +16,20 @@
 
 ?>
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?
-    $dt['tit'] = 'Справочник валют';
+<?php    $dt['tit'] = 'Справочник валют';
     $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-    <? $this->load->view('main_navbar'); ?>
+    <?php $this->load->view('main_navbar'); ?>
 
     <div class="container">
 
@@ -52,27 +51,27 @@
 
             <tbody>
 
-            <? foreach($currs as $curr): ?>
+            <?php foreach($currs as $curr): ?>
 
                 <tr>
                     <td><?=$curr['id']?></td>
                     <td><?=$curr['nam']?></td>
                     <td><?=$curr['mult']?></td>
 
-                    <td><? printf("%.2f",$curr['rate']); ?></td>
+                    <td><?php printf("%.2f",$curr['rate']); ?></td>
 
                     <td>
-                        <? $href = base_url('index.php/conf_curr/edit/' . $curr['id']); ?>
+                        <?php $href = base_url('index.php/conf_curr/edit/' . $curr['id']); ?>
                         <a class="btn btn-primary" href="<?=$href?>" title="Редактировать">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
 
-                        <? $href = base_url('index.php/conf_curr/del/' . $curr['id']); ?>
+                        <?php $href = base_url('index.php/conf_curr/del/' . $curr['id']); ?>
                         <a class="btn btn-danger" type="button" href="<?=$href?>" title="Удалить">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
 
-                        <? $href = base_url('index.php/conf_rate/index/' . $curr['id']); ?>
+                        <?php $href = base_url('index.php/conf_rate/index/' . $curr['id']); ?>
                         <a class="btn btn-default" type="button" href="<?=$href?>" title="Таблица изменения курса">
                             <span class="glyphicon glyphicon-usd"></span>
                         </a>
@@ -81,7 +80,7 @@
 
                 </tr>
 
-            <? endforeach  ?>
+            <?php endforeach  ?>
 
             </tbody>
 

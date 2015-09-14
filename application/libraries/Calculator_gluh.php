@@ -22,6 +22,8 @@ class Calculator_gluh {
 
         $this->CI->load->model('Profil_model', 'profil');
         $this->CI->load->model('Glass_model', 'glass');
+        $this->CI->load->model('Users_model', 'users');
+        $this->CI->load->model('Price_gluh_model', 'price');
 
     }
 
@@ -69,7 +71,7 @@ class Calculator_gluh {
         $res = 0;
 
         // profil cost
-        $profil_cost = $this->CI->profil->get_cost_by_profil_size($this->profil_sym, $this->width, $this->height);
+        $profil_cost = $this->CI->price->get_cost_by_profil_size($this->profil_sym, $this->width, $this->height);
         if($profil_cost == -1){
             $this->error_msg = "Нет прайса на окно данного размера";
             return -1;
@@ -87,12 +89,27 @@ class Calculator_gluh {
             return -1;
         }
 
-        //
+        // row cost
+        $row_cost = $glass_cost + $profil_cost;
+
+        // получить проценты на переработку
+        $user_calc = $this->CI->users->get_calc($this->dealer_id);
+        $mater = $user_calc['mater'];
+        $prod = $user_calc['prod'];
+        $marg = $user_calc['marg'];
+
+        // расчет стоимости по формуле
+        $cost = ($row_cost + ($mater + $mater * $prod)) * (100 + $marg)/100;
+
+        // скидка для дилера
+        // @todo make dealer skid
 
 
 
 
 
+
+        $res = $cost;
 
         return $res;
     }

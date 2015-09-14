@@ -1,25 +1,25 @@
-<?
+<?php
 
 // главная административная страница
 // требуются админ права для открытия
 
 ?>
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?
+<?php
 $data['tit'] = 'Настройки';
 $this->load->view('main_head', $data);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
         
@@ -69,7 +69,7 @@ $this->load->view('main_head', $data);
                         принесет уют в Ваш дом и комфорт в Ваш офис.</p>                        
                         
                         <div>
-                            <? echo anchor('main/calcgl', 'Расчет', array('class' => 'btn btn-primary'));?>
+                            <?php echo anchor('main/calcgl', 'Расчет', array('class' => 'btn btn-primary'));?>
                         </div>
                     </div>
                     

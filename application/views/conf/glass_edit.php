@@ -1,36 +1,35 @@
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<? $this->load->view('main_head'); ?>
+<?php $this->load->view('main_head'); ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
     <h3>
         Стеклопакеты:
-        <? if($mode == 'ed'): ?>
+        <?php if($mode == 'ed'): ?>
             редактирование
-        <? elseif($mode == 'dl'): ?>
+        <?php elseif($mode == 'dl'): ?>
             удаление
-        <? elseif($mode == 'nw'): ?>
+        <?php elseif($mode == 'nw'): ?>
             добавление нового
-        <? else: ?>
+        <?php else: ?>
             неизвестная команда
-        <? endif ?>
+        <?php endif ?>
     </h3>
 
-    <? if($mode == 'dl'): ?>
+    <?php if($mode == 'dl'): ?>
         <div class="alert alert-danger">
             Вы уверены в том что хотите удалить выбранный стеклопакет?
         </div>
-    <? endif ?>
+    <?php endif ?>
 
-    <?
-
+    <?php
     // test cmd
     if($mode == 'ed' || $mode == 'dl' || $mode == 'nw'){
         $cmdOk = true;
@@ -49,14 +48,13 @@
 
     ?>
 
-    <? if($cmdOk && $dataOk): ?>
+    <?php if($cmdOk && $dataOk): ?>
 
         <!--
         <form class="form-horizontal">
         -->
 
-        <?
-            if($mode == 'ed' || $mode == 'dl'){
+        <?php            if($mode == 'ed' || $mode == 'dl'){
                 $this->load->helper('form');
                 $ar = array('class' => 'form-horizontal',);
                 $id = $glass['id'];
@@ -81,8 +79,7 @@
 
         ?>
 
-        <?
-
+        <?php
         if($mode == 'dl'){
             $dlmark = 'readonly';
         }
@@ -136,7 +133,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary" name="btnSave">
-                        <? echo $mode == 'dl' ? 'Удалить' : 'Сохранить' ?>
+                        <?php echo $mode == 'dl' ? 'Удалить' : 'Сохранить' ?>
                     </button>
                     <a type="button" class="btn btn-primary"
                        href="index"
@@ -145,11 +142,11 @@
             </div>
         </form>
 
-    <? else: ?>
+    <?php else: ?>
 
         <!-- error messages -->
 
-    <? endif ?>
+    <?php endif ?>
 
 
 

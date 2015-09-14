@@ -1,23 +1,20 @@
-<?
-    // libraries
+<?php    // libraries
     $this->load->helper('form');
     $this->load->helper('url');
 ?>
 
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<?
-    $dt['tit'] = 'Валюта редактор';
+<?php    $dt['tit'] = 'Валюта редактор';
     $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<?
-
+<?php
 /**
  * @todo
  * - validation!!!
@@ -25,49 +22,46 @@
 
 ?>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
     <h3>
         Валюта:
-        <? if($mode == 'ed'): ?>
+        <?php if($mode == 'ed'): ?>
             редактирование
-        <? elseif($mode == 'dl'): ?>
+        <?php elseif($mode == 'dl'): ?>
             удаление
-        <? elseif($mode == 'nw'): ?>
+        <?php elseif($mode == 'nw'): ?>
             добавление новой
-        <? else: ?>
+        <?php else: ?>
             неизвестная команда
-        <? endif ?>
+        <?php endif ?>
     </h3>
 
-    <? if($mode == 'dl'): ?>
+    <?php if($mode == 'dl'): ?>
         <div class="alert alert-danger">
             Вы уверены в том, что хотите удалить выбранную валюту?
         </div>
-    <? endif ?>
+    <?php endif ?>
 
-    <?
-    // readonly attribute for input
+    <?php    // readonly attribute for input
     if($mode == 'dl') $dlmark = 'readonly';
     else $dlmark = '';
     ?>
 
-    <? $ar = array('class' => 'form-horizontal',); ?>
+    <?php $ar = array('class' => 'form-horizontal',); ?>
 
-    <?
-    // validation errors
+    <?php    // validation errors
     $estr = validation_errors();
     $evisi = !empty($estr) ? '' : 'style="display: none"';
     ?>
 
-    <div class="alert alert-danger" role="alert" <?=$evisi?>><? echo $estr; ?></div>
+    <div class="alert alert-danger" role="alert" <?=$evisi?>><?php echo $estr; ?></div>
 
     <!-- form -->
 
-    <?
-
+    <?php
     $id = $row['id'];
     $nam = $row['nam'];
     $mult = $row['mult'];
@@ -96,7 +90,7 @@
             <label for="input_nam" class="control-label col-sm-2">Наименование</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" id="input_nam" name="nam" <?=$dlmark?>
-                       value="<? echo $nam; ?>"/>
+                       value="<?php echo $nam; ?>"/>
             </div>
         </div>
 
@@ -104,18 +98,17 @@
             <label for="input_mult" class="control-label col-sm-2">Множитель для курса</label>
             <div class="col-sm-2">
                 <input type="number" class="form-control" id="input_mult" name="mult" <?=$dlmark?>
-                       value="<? echo $mult; ?>"/>
+                       value="<?php echo $mult; ?>"/>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2">
                 <button type="submit" class="btn btn-primary" name="btn_save">
-                    <? echo $mode == 'dl' ? 'Удалить' : 'Сохранить' ?>
+                    <?php echo $mode == 'dl' ? 'Удалить' : 'Сохранить' ?>
                 </button>
 
-                <?
-                $ar = array(
+                <?php                $ar = array(
                     'type' => 'button',
                     'class' => 'btn btn-primary',
                     'name' => 'btn_cancel',

@@ -1,23 +1,23 @@
-<? defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<?
+<?php
 // libraries
 $this->load->helper('form');
 $this->load->helper('url');
 ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Прайс глухого окна';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -25,9 +25,9 @@ $this->load->view('main_head', $dt);
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <? $ar = array('class' => 'btn btn-primary'); ?>
-            <? echo anchor('price','Работа с прайсами',$ar); ?>
-            <? echo anchor('price/load','Загрузить новый прайс',$ar); ?>
+            <?php $ar = array('class' => 'btn btn-primary'); ?>
+            <?php echo anchor('price','Работа с прайсами',$ar); ?>
+            <?php echo anchor('price/load','Загрузить новый прайс',$ar); ?>
         </div>
     </div>
 
@@ -46,8 +46,8 @@ $this->load->view('main_head', $dt);
 
         <tbody>
 
-            <? $npp = 1; ?>
-            <? foreach($csv as $row): ?>
+            <?php $npp = 1; ?>
+            <?php foreach($csv as $row): ?>
                 <tr>
 
                     <td><?=$npp?></td>
@@ -57,10 +57,10 @@ $this->load->view('main_head', $dt);
                     <td><?=$row['hmax']?></td>
                     <td><?=$row['p']?></td>
 
-                    <? $npp++; ?>
+                    <?php $npp++; ?>
 
                 </tr>
-            <? endforeach ?>
+            <?php endforeach ?>
 
         </tbody>
 

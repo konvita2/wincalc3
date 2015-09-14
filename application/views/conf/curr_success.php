@@ -1,15 +1,14 @@
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 <html lang="ru">
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<?
-    $this->load->view('main_head', array('tit' => 'Справочник валют OK!'));
+<?php    $this->load->view('main_head', array('tit' => 'Справочник валют OK!'));
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -22,8 +21,7 @@
         </div>
     </div>
 
-    <?
-
+    <?php
     $ar = array(
         'class' => 'btn btn-primary',
     );

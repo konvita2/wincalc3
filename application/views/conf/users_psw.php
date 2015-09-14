@@ -1,14 +1,14 @@
-<?
+<?php
 // libraries
 $this->load->helper('form');
 $this->load->helper('url');
 ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Пользователь пароль';
 $this->load->view('main_head', $dt);
 ?>
@@ -30,8 +30,7 @@ $this->load->view('main_head', $dt);
 
 <body>
 
-<?
-
+<?php
 /**
  * @todo
  * -
@@ -39,7 +38,7 @@ $this->load->view('main_head', $dt);
 
 ?>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -47,8 +46,7 @@ $this->load->view('main_head', $dt);
 
     <!-- form_open -->
 
-    <?
-    $ar = array('class' => 'form-horizontal','onsubmit' => 'return validatePassword();');
+    <?php    $ar = array('class' => 'form-horizontal','onsubmit' => 'return validatePassword();');
     echo form_open("users/psw/$id", $ar);
     ?>
 
@@ -75,8 +73,7 @@ $this->load->view('main_head', $dt);
                 Сохранить
             </button>
 
-            <?
-            $ar = array(
+            <?php            $ar = array(
                 'type' => 'button',
                 'class' => 'btn btn-primary',
                 'name' => 'btn_cancel',
@@ -88,7 +85,7 @@ $this->load->view('main_head', $dt);
     </div>
 
     <!-- form_close -->
-    <? echo form_close(); ?>
+    <?php echo form_close(); ?>
 
 </div>
 

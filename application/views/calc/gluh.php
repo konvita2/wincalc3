@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
-    <script src="/js/jquery-2.1.4"></script>
+    <script src="/js/jquery-2.1.4.js"></script>
     <script src="/js/bootstrap.js"></script>
 </head>
 
@@ -23,11 +23,11 @@
 
     </br
     <label>Профиль</label>
-    <? echo $profil_set; ?>
+    <?php echo $profil_set; ?>
 
     </br
     <label>Стеклопакет</label>
-    <? echo $glass_set; ?>
+    <?php echo $glass_set; ?>
 
     <div>
         <button type="button" id="btnCalc">Расчитать</button>
@@ -41,7 +41,7 @@
 
         $(document).ready(
             $('#btnCalc').bind('click', function () {
-                alert('111');
+                //alert('111');
 
                 var w = $('#parW').val();
                 var h = $('#parH').val();
@@ -59,8 +59,16 @@
                     },
                     function(data){
                         $('#debugArea').html('');
-                        inp = data.input; // it's a string
+                        var inp = data.input; // it's a string
                         $('#debugArea').html(inp);
+
+                        alert('222');
+
+
+                        $('#resultArea').html('');
+                        var cost = data.cost;
+                        var coststr = 'Стоимость изделия:' + cost.toString() + ' грн.';
+                        $('#resultArea').html(coststr);
                     },
                     'json'
                 );

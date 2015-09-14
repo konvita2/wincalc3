@@ -1,23 +1,23 @@
-<? defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<?
+<?php
 // libraries
 $this->load->helper('form');
 $this->load->helper('url');
 ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Загрузка прайса';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -29,23 +29,22 @@ $this->load->view('main_head', $dt);
 
         <div class="panel-body">
             <!-- error -->
-            <?
-            $estr = $errors;
+            <?php            $estr = $errors;
             $evisi = !empty($estr) ? '' : 'style="display: none"';
             ?>
 
-            <div class="alert alert-danger" role="alert" <?=$evisi?> > <? echo $estr; ?></div>
+            <div class="alert alert-danger" role="alert" <?=$evisi?> > <?php echo $estr; ?></div>
 
             <!-- form open -->
-            <? echo  form_open_multipart('price/glload', array('class' => 'form-horizontal',)); ?>
+            <?php echo  form_open_multipart('price/glload', array('class' => 'form-horizontal',)); ?>
 
             <div class="form-group">
                 <label for="profil" class="control-label col-sm-2">Профиль</label>
                 <div class="col-sm-3">
                     <select class="form-control" id="profil" name="profil">
-                        <? foreach($profil as $pr): ?>
+                        <?php foreach($profil as $pr): ?>
                             <option value="<?=$pr['sym']?>"><?=$pr['description']?></option>
-                        <? endforeach ?>
+                        <?php endforeach ?>
                     </select>
                 </div>
             </div>
@@ -66,8 +65,7 @@ $this->load->view('main_head', $dt);
                         Загрузить
                     </button>
 
-                    <?
-                    // @todo change link to other page
+                    <?php                    // @todo change link to other page
                     $ar = array(
                         'type' => 'button',
                         'class' => 'btn btn-primary',
@@ -80,7 +78,7 @@ $this->load->view('main_head', $dt);
             </div>
 
             <!-- form close -->
-            <? echo form_close(); ?>
+            <?php echo form_close(); ?>
 
         </div>
     </div>

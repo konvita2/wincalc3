@@ -1,14 +1,13 @@
 <html lang="ru">
 
-<?
-    $this->load->helper('url');
+<?php    $this->load->helper('url');
 ?>
 
-<? $this->load->view('main_head'); ?>
+<?php $this->load->view('main_head'); ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -31,7 +30,7 @@
 
         <tbody>
 
-        <? foreach($glasses as $glass): ?>
+        <?php foreach($glasses as $glass): ?>
 
             <tr>
                 <td><?=$glass['id']?></td>
@@ -42,12 +41,12 @@
                 <td><?=$glass['price']?></td>
 
                 <td>
-                    <? $href = base_url('index.php/conf_glass/edit/' . $glass['id']); ?>
+                    <?php $href = base_url('index.php/conf_glass/edit/' . $glass['id']); ?>
                     <a class="btn btn-primary" href="<?=$href?>">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
 
-                    <? $href = base_url('index.php/conf_glass/del/' . $glass['id']); ?>
+                    <?php $href = base_url('index.php/conf_glass/del/' . $glass['id']); ?>
                     <a class="btn btn-primary" type="button" href="<?=$href?>">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
@@ -55,7 +54,7 @@
 
             </tr>
 
-        <? endforeach  ?>
+        <?php endforeach  ?>
 
         </tbody>
 

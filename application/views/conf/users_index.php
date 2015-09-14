@@ -1,18 +1,18 @@
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Справочник пользователей';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -33,11 +33,11 @@ $this->load->view('main_head', $dt);
         </thead>
 
         <tbody>
-            <? foreach($rows as $row): ?>
+            <?php foreach($rows as $row): ?>
             <tr>
 
-                <? $active = $row['active'] == 0 ? "" : "Да"; ?>
-                <? $admin = $row['admin'] == 0 ? "" : "Да"; ?>
+                <?php $active = $row['active'] == 0 ? "" : "Да"; ?>
+                <?php $admin = $row['admin'] == 0 ? "" : "Да"; ?>
 
 
                 <td><?=$row['id']?></td>
@@ -48,22 +48,22 @@ $this->load->view('main_head', $dt);
                 <td><?=$admin?></td>
                 <td> <!-- actions -->
 
-                    <? $href = base_url('index.php/users/edit/' . $row['id']); ?>
+                    <?php $href = base_url('index.php/users/edit/' . $row['id']); ?>
                     <a class="btn btn-primary" href="<?=$href?>" title="Редактировать">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
 
-                    <? $href = base_url('index.php/users/del/' . $row['id']); ?>
+                    <?php $href = base_url('index.php/users/del/' . $row['id']); ?>
                     <a class="btn btn-primary" type="button" href="<?=$href?>" title="Удалить">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
 
-                    <? $href = base_url('index.php/users/calcedit/' . $row['id']); ?>
+                    <?php $href = base_url('index.php/users/calcedit/' . $row['id']); ?>
                     <a class="btn btn-primary" type="button" href="<?=$href?>" title="Показатели калькуляции">
                         <span class="glyphicon glyphicon-tags"></span>
                     </a>
 
-                    <? $href = base_url('index.php/users/psw/' . $row['id']); ?>
+                    <?php $href = base_url('index.php/users/psw/' . $row['id']); ?>
                     <a class="btn btn-primary" type="button" href="<?=$href?>" title="Сменить пароль">
                         <span class="glyphicon glyphicon-lock"></span>
                     </a>
@@ -71,7 +71,7 @@ $this->load->view('main_head', $dt);
                 </td>
 
             </tr>
-            <? endforeach ?>
+            <?php endforeach ?>
 
         </tbody>
 

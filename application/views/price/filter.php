@@ -1,20 +1,20 @@
-<? defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<? $this->load->helper('url'); ?>
+<?php $this->load->helper('url'); ?>
 
-<? $this->load->view('main_topmost'); ?>
+<?php $this->load->view('main_topmost'); ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 
-<?
+<?php
 $dt['tit'] = 'Прайс на глухое окно (без СП)';
 $this->load->view('main_head', $dt);
 ?>
 
 <body>
 
-<? $this->load->view('main_navbar'); ?>
+<?php $this->load->view('main_navbar'); ?>
 
 <div class="container">
 
@@ -23,8 +23,8 @@ $this->load->view('main_head', $dt);
     <div class="panel panel-default">
         <div class="panel-heading">Укажите профильную систему</div>
         <div class="panel-body">
-            <? echo $select; ?>
-            <? // @todo change sort order in profil systems (by desc?) ?>
+            <?php echo $select; ?>
+            <?php // @todo change sort order in profil systems (by desc?) ?>
         </div>
     </div>
 

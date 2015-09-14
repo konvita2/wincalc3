@@ -1,86 +1,137 @@
-<!DOCTYPE html>
-<html>
+<?php
 
-<head>
-    <title>Расчет стоимости глухого окна</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <script src="/js/jquery-2.1.4.js"></script>
-    <script src="/js/bootstrap.js"></script>
-</head>
+// главная административная страница
+// требуются админ права для открытия
+
+?>
+
+<?php $this->load->helper('url'); ?>
+
+<?php $this->load->view('main_topmost'); ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php
+$data['tit'] = 'Настройки';
+$this->load->view('main_head', $data);
+?>
 
 <body>
 
-    <h3>Расчет стоимости глухого окна</h3>
+<?php $this->load->view('main_navbar'); ?>
 
-    <label>Ширина</label>
-    <input type="number" placeholder="Введите ширину" id="parW" name="width"/>
+<div class="container">
 
-    <br/>
-    <label>Высота</label>
-    <input type="number" placeholder="Введите высоту" id="parH" name="height"/>
-
-    </br
-    <label>Профиль</label>
-    <?php echo $profil_set; ?>
-
-    </br
-    <label>Стеклопакет</label>
-    <?php echo $glass_set; ?>
-
-    <div>
-        <button type="button" id="btnCalc">Расчитать</button>
+    <div class="win-header">
+        <h3>Расчет стоимости глухого окна</h3>
     </div>
 
-    <div id="debugArea"></div>
+    <form class="form-horizontal">
 
-    <div id="resultArea"></div>
+        <div class="form-group">
+            <label for="parW" class="col-sm-2 control-label">Ширина</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Введите ширину" id="parW" name="width"/>
+            </div>
+        </div>
 
-    <script type="text/javascript">
+        <div class="form-group">
+            <label for="parH" class="control-label col-sm-2">Высота</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Введите высоту" id="parH" name="height"/>
+            </div>
+        </div>
 
-        $(document).ready(
-            $('#btnCalc').bind('click', function () {
-                //alert('111');
+        <div class="form-group">
+            <label for="profil" class="control-label col-sm-2">Профиль</label>
+            <div class="col-sm-4">
+                <?php echo $profil_set; ?>
+            </div>
+        </div>
 
-                var w = $('#parW').val();
-                var h = $('#parH').val();
-                var profil_sym = $('#profil').val();
-                var glass_id = $('#glass').val();
+        <div class="form-group">
+            <label for="glass" class="control-label col-sm-2">Стеклопакет</label>
+            <div class="col-sm-4">
+                <?php echo $glass_set; ?>
+            </div>
+        </div>
 
-                $.post(
-                    '/index.php/calc/gluhajax',
-                    {
-                        task: 'calc',
-                        w: w,
-                        h: h,
-                        profil_sym: profil_sym,
-                        glass_id: glass_id
-                    },
-                    function(data){
-                        $('#debugArea').html('');
-                        var inp = data.input; // it's a string
-                        $('#debugArea').html(inp);
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" id="btnCalc" class="btn btn-default">Расчитать</button>
+            </div>
+        </div>
+    </form>
 
-                        alert('222');
+    <!-- results -->
 
+    <div class="col-sm-8">
+        <div class="panel panel-primary ">
 
-                        $('#resultArea').html('');
-                        var cost = data.cost;
-                        var coststr = 'Стоимость изделия:' + cost.toString() + ' грн.';
-                        $('#resultArea').html(coststr);
-                    },
-                    'json'
-                );
+            <div class="panel-heading">
+                <h3 class="panel-title">Результат расчета</h3>
+            </div>
 
-            })
-        );
+            <div class="panel-body" id="resultArea">
+
+            </div>
+
+        </div>
+    </div>
 
 
 
-    </script>
+
+
+
+
+
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        $('#btnCalc').bind('click', function () {
+            //alert('111');
+
+            var w = $('#parW').val();
+            var h = $('#parH').val();
+            var profil_sym = $('#profil').val();
+            var glass_id = $('#glass').val();
+
+            $.post(
+                '/index.php/calc/gluhajax',
+                {
+                    task: 'calc',
+                    w: w,
+                    h: h,
+                    profil_sym: profil_sym,
+                    glass_id: glass_id
+                },
+                function(data){
+                    $('#debugArea').html('');
+                    var inp = data.input; // it's a string
+                    $('#debugArea').html(inp);
+
+                    //alert('222');
+
+
+                    $('#resultArea').html('');
+                    var cost = data.cost;
+                    var coststr = 'Стоимость изделия:' + cost.toString() + ' грн.';
+                    $('#resultArea').html(coststr);
+                },
+                'json'
+            );
+
+        })
+    );
+
+
+
+</script>
 
 
 </body>
-
 </html>

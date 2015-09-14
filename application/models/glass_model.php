@@ -134,7 +134,7 @@ class Glass_model extends CI_Model {
 
         $loc = '';
         foreach ($attr as $atrkey => $atrval) {
-            $loc = $atrkey . '="' . $atrval . '" ';
+            $loc .= $atrkey . '="' . $atrval . '" ';
         }
 
         $res = "<select $loc >";

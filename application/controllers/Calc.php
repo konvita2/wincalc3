@@ -37,18 +37,20 @@ class Calc extends CI_Controller {
         // prep profil
         $this->load->model('Profil_model', 'profil');
         $par = array(
-            'id' => 'profil'
+            'id' => 'profil',
+            'class' => 'form-control'
         );
         $data['profil_set'] = $this->profil->get_html_select($par);
 
         // prep glass
         $this->load->model('Glass_model', 'glass');
         $par = array(
-            'id' => 'glass'
+            'id' => 'glass',
+            'class' => 'form-control'
         );
         $data['glass_set'] = $this->glass->get_html_select($par);
 
-        $this->load->view('calc/gluh', $data);
+        $this->load->view('calc/gluh', $data);  // @todo gluh or gluh1 ?
     }
 
     /**

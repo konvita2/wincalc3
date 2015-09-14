@@ -27,42 +27,44 @@ $this->load->view('main_head', $data);
         <h3>Расчет стоимости глухого окна</h3>
     </div>
 
-    <form class="form-horizontal">
+    <div class="wc3-input-section">
+        <form class="form-horizontal">
 
-        <div class="form-group">
-            <label for="parW" class="col-sm-2 control-label">Ширина</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" placeholder="Введите ширину" id="parW" name="width"/>
+            <div class="form-group">
+                <label for="parW" class="col-sm-2 control-label">Ширина</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Введите ширину" id="parW" name="width"/>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="parH" class="control-label col-sm-2">Высота</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" placeholder="Введите высоту" id="parH" name="height"/>
+            <div class="form-group">
+                <label for="parH" class="control-label col-sm-2">Высота</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Введите высоту" id="parH" name="height"/>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="profil" class="control-label col-sm-2">Профиль</label>
-            <div class="col-sm-4">
-                <?php echo $profil_set; ?>
+            <div class="form-group">
+                <label for="profil" class="control-label col-sm-2">Профиль</label>
+                <div class="col-sm-4">
+                    <?php echo $profil_set; ?>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="glass" class="control-label col-sm-2">Стеклопакет</label>
-            <div class="col-sm-4">
-                <?php echo $glass_set; ?>
+            <div class="form-group">
+                <label for="glass" class="control-label col-sm-2">Стеклопакет</label>
+                <div class="col-sm-4">
+                    <?php echo $glass_set; ?>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" id="btnCalc" class="btn btn-default">Расчитать</button>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" id="btnCalc" class="btn btn-default">Расчитать</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <!-- results -->
 
@@ -79,13 +81,6 @@ $this->load->view('main_head', $data);
 
         </div>
     </div>
-
-
-
-
-
-
-
 
 </div>
 
@@ -110,17 +105,12 @@ $this->load->view('main_head', $data);
                     glass_id: glass_id
                 },
                 function(data){
-                    $('#debugArea').html('');
                     var inp = data.input; // it's a string
-                    $('#debugArea').html(inp);
-
-                    //alert('222');
-
 
                     $('#resultArea').html('');
                     var cost = data.cost;
-                    var coststr = 'Стоимость изделия:' + cost.toString() + ' грн.';
-                    $('#resultArea').html(coststr);
+                    var coststr = '<p style="font-weight: bold;">Стоимость изделия:' + cost.toFixed(2) + ' грн.</p>';
+                    $('#resultArea').html(inp + coststr);
                 },
                 'json'
             );

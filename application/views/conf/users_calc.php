@@ -68,6 +68,14 @@ $this->load->view('main_head', $dt);
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="discount" class="control-label col-sm-4">Дилерская скидка, %</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control"
+                   id="discount" name="discount" value="<?=$discount?>"/>
+        </div>
+    </div>
+    
 
     <!-- buttons -->
     <div class="form-group">

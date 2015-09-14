@@ -74,7 +74,7 @@ class Calc extends CI_Controller {
 
             $jsonans["input"] = $inp->get_input_data();
 
-            // calculation
+            // calculation  @todo test -1 and show error
             $cost = $inp->get_cost();
             $jsonans["cost"] = $cost;
 

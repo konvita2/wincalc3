@@ -50,14 +50,14 @@ class Calculator_gluh {
     public function get_input_data(){
         $res = '';
 
-        $res = 'Input data:<br/>';
-        $res .= ' width is ' . $this->width . ";<br/>";
-        $res .= ' height is ' . $this->height . ";<br/>";
-        $res .= ' glass_id is ' . $this->glass_id . " ("
+        $res = '<p>Входные параметры:<br/>';
+        $res .= ' ширина: ' . $this->width . ";<br/>";
+        $res .= ' высота: ' . $this->height . ";<br/>";
+        $res .= ' стеклопакет: ' . $this->glass_id . " ("
             . $this->CI->glass->get_namdesc_by_id($this->glass_id) . ");<br/>";
-        $res .= ' profil_sym is ' . $this->profil_sym
+        $res .= ' профиль: ' . $this->profil_sym
             . " (" . $this->CI->profil->get_description_by_sym($this->profil_sym) . ")"
-            . ";<br/>";
+            . ";<br/></p>";
 
         return $res;
     }

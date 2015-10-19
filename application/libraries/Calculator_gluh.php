@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Calculator_gluh {
 
-    const MANUFACTURING_COST = 5.45; // стоимость переработки из адуло
+    //const MANUFACTURING_COST = 5.45; // стоимость переработки из адуло
 
     public $width = 0;
     public $height = 0;
@@ -72,12 +72,34 @@ class Calculator_gluh {
     public function get_cost(){
         $res = 0;
 
+        // !!! этот кусок надо закоментировать
         // profil cost
+        /*
         $profil_cost = $this->CI->price->get_cost_by_profil_size($this->profil_sym, $this->width, $this->height);
         if($profil_cost == -1){
             $this->error_msg = "Нет прайса на окно данного размера";
             return -1;
         }
+        */
+
+        // !!! новый вариант расчета
+        // profil cost
+        $param_object = new Parameters_gluh();
+        $profil_price = $param_object->get_prices_by_profil($this->profil_sym);
+
+        if(empty($profil_price)){
+            $this->error_msg = "Нет параметрических цен на профиль для глухого окна";
+            return -1;
+        }
+
+        $perim_price = $profil_price['perimeter_price'];
+        $width_price = $profil_price['width_price'];
+        $constant_price = $profil_price['constant_price'];
+        $manuf_price = $profil_price['manufacturing_price'];
+
+        $profil_cost = (2 * $this->width + 2 * $this->height) / 1000 * $perim_price
+            + $this->width * $width_price
+            + $constant_price;
 
         log_message('debug', "!!! profil cost is $profil_cost");
 
@@ -107,9 +129,9 @@ class Calculator_gluh {
         $discount = $user_calc['discount'];
 
         // расчет стоимости по формуле
-        $cost = $row_cost + self::MANUFACTURING_COST
+        $cost = $row_cost + $manuf_price
             + $mater / 100 * $row_cost
-            + $prod / 100 * self::MANUFACTURING_COST;
+            + $prod / 100 * $manuf_price;
 
         $cost += $cost * $marg / 100;
 

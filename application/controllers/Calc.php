@@ -74,6 +74,13 @@ class Calc extends CI_Controller {
 
             $jsonans["input"] = $inp->get_input_data();
 
+            $jsonans['glass_nam'] = '';
+            $this->load->model('Glass_model', 'glass');
+            $glass_res = $this->glass->get_row_by_id($glass_id);
+            if(!empty($glass_res)){
+                $jsonans['glass_nam'] = $glass_res['nam'];
+            }
+
             // calculation  @todo test -1 and show error
             $cost = $inp->get_cost();
             $jsonans["cost"] = $cost;

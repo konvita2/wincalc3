@@ -47,6 +47,8 @@ $this->load->view('main_head', $data);
             <?php echo anchor('conf_glass', 'Стеклопакеты', array('class' => 'btn btn-default')); ?>
             <?php echo anchor('profil', 'Оконные профили', array('class' => 'btn btn-default')); ?>
             <?php echo anchor('price', 'Прайсы', array('class' => 'btn btn-default')); ?>
+            <?php echo anchor('furn', 'Фурнитура', array('class' => 'btn btn-default')); ?>
+            <?php echo anchor('grfurn', 'Группы фурнитуры', array('class' => 'btn btn-default')); ?>
         </div>
     </div>
 
